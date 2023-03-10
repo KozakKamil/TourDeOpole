@@ -1,7 +1,7 @@
 # TourDeOpole
 TourDeOpole is an application that allows users to easily and conveniently plan their trips to one of the oldest cities in Poland - Opole.
 
-## Użytkowanie 
+## Usage 
 The application does not require user registration.
 
 ## Sightseeing
