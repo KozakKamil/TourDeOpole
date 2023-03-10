@@ -1,5 +1,4 @@
 ﻿using System;
-using TourDeOpole.Services;
 using TourDeOpole.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -12,8 +11,6 @@ namespace TourDeOpole
         public App()
         {
             InitializeComponent();
-
-            DependencyService.Register<MockDataStore>();
             MainPage = new AppShell();
         }
 
