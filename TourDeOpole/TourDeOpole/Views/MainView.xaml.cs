@@ -10,12 +10,14 @@ using Xamarin.Forms.Xaml;
 namespace TourDeOpole.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class LoginPage : ContentPage
+
+    //tutaj tylko to co dotyczy UI 
+    public partial class MainView : ContentPage
     {
-        public LoginPage()
+        public MainView()
         {
             InitializeComponent();
-            this.BindingContext = new LoginViewModel();
+            BindingContext = new MainViewModel();
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using TourDeOpole.Services;
 using TourDeOpole.ViewModels;
 using TourDeOpole.Views;
 using Xamarin.Forms;
@@ -8,11 +9,11 @@ namespace TourDeOpole
 {
     public partial class AppShell : Xamarin.Forms.Shell
     {
+        NavigationService navigationService;
         public AppShell()
         {
             InitializeComponent();
-            Routing.RegisterRoute(nameof(ItemDetailPage), typeof(ItemDetailPage));
-            Routing.RegisterRoute(nameof(NewItemPage), typeof(NewItemPage));
+            navigationService= new NavigationService();
         }
 
         private async void OnMenuItemClicked(object sender, EventArgs e)
