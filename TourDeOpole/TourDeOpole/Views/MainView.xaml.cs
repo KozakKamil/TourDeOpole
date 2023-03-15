@@ -14,10 +14,16 @@ namespace TourDeOpole.Views
     //tutaj tylko to co dotyczy UI 
     public partial class MainView : ContentPage
     {
+        MainViewModel _viewModel;
         public MainView()
         {
             InitializeComponent();
-            BindingContext = new MainViewModel();
+            _viewModel= new MainViewModel();
+            BindingContext = _viewModel;
+            Appearing += (sender, e) =>
+            {
+                _viewModel.getLocation();
+            };
         }
     }
 }

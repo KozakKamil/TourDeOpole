@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using TourDeOpole.Models;
 using Xamarin.Forms;
 
 namespace TourDeOpole.ViewModels
