@@ -1,22 +1,9 @@
 {
-    "firstName": "John",
-    "lastName": "Doe",
-    "age": 30,
-    "address": {
-        "street": "123 Main St",
-        "city": "Anytown",
-        "state": "CA",
-        "zip": "12345"
-    },
-    "phoneNumbers": [
-        {
-            "type": "home",
-            "number": "555-555-1234"
-        },
-        {
-            "type": "work",
-            "number": "555-555-5678"
-        }
-    ],
-    "email": "john.doe@example.com"
+	"LocationID": 1,
+	"Name": "Wieża Piastowska",
+	"Description": "Placeholder,
+	"Latitude": 50.667222,
+	"Longitude": 17.919167,
+	"IsCustom": false
+	
 }
