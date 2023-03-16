@@ -3,6 +3,18 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TourDeOpole.Views.MainView">
     <StackLayout>
-            <Label Text="Hello Xamarin.Forms!" />
-        </StackLayout>
+        <Label Text="Hello Xamarin.Forms!" />
+        <Entry x:Name="nameEntry" Placeholder="Enter Name"/>
+        <Button Text="Add to database" Clicked="OnButtonClickedDatabase"/>
+        <CollectionView x:Name="collectionView">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout>
+                        <Label Text="{Binding IdTest}" FontSize="Medium"/>
+                        <Label Text="{Binding NameTest}" FontSize="Medium"/>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </StackLayout>
 </ContentPage>
