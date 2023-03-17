@@ -10,15 +10,21 @@ namespace TourDeOpole.ViewModels
     public class TripViewModel : BaseViewModel
     {
         public Command GoToDetailsCommand { get; set; }
+        public Command GoToAddCommand { get; set; }
 
         public TripViewModel() 
         {
             GoToDetailsCommand = new Command(GoToDetails);
+            GoToAddCommand = new Command(GoToAddTrip);
         }
 
         private async void GoToDetails()
         {
             await NavigationService.GoToTripDetails();
+        }
+        private async void GoToAddTrip()
+        {
+            await NavigationService.GoToAddTrip();
         }
 
     }

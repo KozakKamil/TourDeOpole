@@ -41,5 +41,15 @@ namespace TourDeOpole.Services
         {
             await Shell.Current.GoToAsync(nameof(ScanQRView));
         }
+
+        public static async Task GoToAdd()
+        {
+            await Shell.Current.GoToAsync(nameof(SimpleAddView));
+        }
+
+        public static async Task GoToAddTrip()
+        {
+            await Shell.Current.GoToAsync(nameof(AddTripView));
+        }
     }
 }

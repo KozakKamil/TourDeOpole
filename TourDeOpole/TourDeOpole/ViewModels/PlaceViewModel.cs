@@ -11,9 +11,11 @@ namespace TourDeOpole.ViewModels
     public partial class PlaceViewModel : BaseViewModel
     {
         public Command GoToDetailsCommand { get; set; }
+        public Command GoToAddCommand { get; set; }
         public PlaceViewModel()
         {
             GoToDetailsCommand = new Command(GoToDetails);
+            GoToAddCommand = new Command(GoToAddPlace);
         }
 
         #region GetLocation
@@ -55,6 +57,10 @@ namespace TourDeOpole.ViewModels
         private async void GoToDetails()
         {
             await NavigationService.GoToPlaceDetails();
+        }
+        private async void GoToAddPlace()
+        {
+            await NavigationService.GoToAdd();
         }
         #endregion
     }

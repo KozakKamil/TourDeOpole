@@ -10,5 +10,6 @@
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
         <Button Text="GOTODETAILS"  Command="{Binding GoToDetailsCommand}" BackgroundColor="Red"/>
+        <Button Text="GOTOADD"  Command="{Binding GoToAddCommand}" BackgroundColor="Red"/>
     </StackLayout>
 </ContentPage>
