@@ -10,7 +10,7 @@ namespace TourDeOpole.Models
         public string Name { get; set;}
         public string Description { get; set;}
         public int LocationID { get; set; }
-        public Location Location { get; set; }
+        public Place Location { get; set; }
         public bool IsDone { get; set; }
         public bool IsStarted { get; set; }
     }

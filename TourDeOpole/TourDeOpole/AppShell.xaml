@@ -8,8 +8,8 @@
     <!--Tworzy tabbar czyli dolne menu-->
     <TabBar>
         <ShellContent Title="About" Icon="icon_about.png" ContentTemplate="{DataTemplate view:MainView}" />
-        <ShellContent Title="About" Icon="icon_about.png" ContentTemplate="{DataTemplate view:MainView}" />
-        <ShellContent Title="About" Icon="icon_about.png" ContentTemplate="{DataTemplate view:MainView}" />
+        <ShellContent Title="About" Icon="icon_about.png" ContentTemplate="{DataTemplate view:TripView}" />
+        <ShellContent Title="About" Icon="icon_about.png" ContentTemplate="{DataTemplate view:SettingView}" />
     </TabBar>
 
 </Shell>

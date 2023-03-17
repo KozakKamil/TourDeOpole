@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using SQLite;
 using TourDeOpole.Services;
 
-namespace TourDeOpole.Models
+namespace TourDeOpole.Repository
 {
     public class Database
     {
@@ -24,7 +22,7 @@ namespace TourDeOpole.Models
 
         public Task<int> SaveDatebaseAsync(DatabaseService service)
         {
-                return _connection.InsertAsync(service);
+            return _connection.InsertAsync(service);
         }
     }
 }

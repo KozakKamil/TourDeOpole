@@ -26,20 +26,6 @@ namespace TourDeOpole.Views
                 _viewModel.getLocation();
             };
         }
-        protected async override void OnAppearing()
-        {
-            base.OnAppearing();
-            collectionView.ItemsSource = await App.Database.GetItemsAsync();
-        }
-        async void OnButtonClickedDatabase(object sender, EventArgs e)
-        {
-            if (!string.IsNullOrWhiteSpace(nameEntry.Text))
-            {
-                await App.Database.SaveDatebaseAsync(new DatabaseService { NameTest = nameEntry.Text });
-            }
-            nameEntry.Text = string.Empty;
-
-            collectionView.ItemsSource = await App.Database.GetItemsAsync();
-        }
+        
     }
 }

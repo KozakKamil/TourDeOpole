@@ -1,10 +1,7 @@
 ﻿using System;
 using System.IO;
-using TourDeOpole.Models;
-using TourDeOpole.Services;
-using TourDeOpole.Views;
+using TourDeOpole.Repository;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace TourDeOpole
 {

@@ -2,15 +2,26 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading;
+using TourDeOpole.Services;
+using TourDeOpole.Views;
 using Xamarin.Essentials;
+using Xamarin.Forms;
 
 namespace TourDeOpole.ViewModels
 {
     //tutaj wszystkie metody, zwykle komendy 
 
-    public partial class MainViewModel:BaseViewModel 
+    public partial class MainViewModel : BaseViewModel
     {
-
+        public Command GoToDetailsCommand { get; set; }
+        public MainViewModel()
+        {
+            GoToDetailsCommand = new Command(GoToDetails);
+        }
+        private async void GoToDetails()
+        {
+            await NavigationService.GoToPlaceDetails();
+        }
         public async void getLocation()
         {
             try
@@ -21,18 +32,21 @@ namespace TourDeOpole.ViewModels
                 var location = new Location(50.664286, 17.936186);
                 if (location != null)
                 {
-                    DisplayAlert("Tytuł",$"Latitude: {location.Latitude}, Longitude: {location.Longitude}, Altitude: {location.Altitude}","OK");
+                    //DisplayAlert("Tytuł", $"Latitude: {location.Latitude}, Longitude: {location.Longitude}, Altitude: {location.Altitude}", "OK");
                 }
 
-                DisplayAlert("Tytuł", $"Dystans {CalculateDistanceBetweenLocation(location, mylocation)}", "Super");
+                //DisplayAlert("Tytuł", $"Dystans {CalculateDistanceBetweenLocation(location, mylocation)}", "Super");
             }
             catch (PermissionException pEx)
             {
-                await App.Current.MainPage.DisplayAlert("Wystąpił błąd", "Niestety nie mamy uprawnień do pobrania Twojej lokalizacji", "Dobrze");
+                if(pEx != null)
+                {
+                    DisplayAlert("Wystąpił błąd", "Niestety nie mamy uprawnień do pobrania Twojej lokalizacji", "Dobrze");
+                }
             }
-            catch (Exception ex)
+            catch
             {
-                await App.Current.MainPage.DisplayAlert("Wystąpił błąd", "Niestety nie udało się pobrać Twojej lokalizacji", "Dobrze");
+                DisplayAlert("Wystąpił błąd", "Niestety nie udało się pobrać Twojej lokalizacji", "Dobrze");
             }
         }
 

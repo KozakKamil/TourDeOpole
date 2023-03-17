@@ -1,20 +1,14 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="TourDeOpole.Views.MainView">
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:viewmodels="clr-namespace:TourDeOpole.ViewModels" 
+             x:DataType="viewmodels:MainViewModel"
+             x:Class="TourDeOpole.Views.MainView"
+             Title="PlaceView">
     <StackLayout>
-        <Label Text="Hello Xamarin.Forms!" />
-        <Entry x:Name="nameEntry" Placeholder="Enter Name"/>
-        <Button Text="Add to database" Clicked="OnButtonClickedDatabase"/>
-        <CollectionView x:Name="collectionView">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <StackLayout>
-                        <Label Text="{Binding IdTest}" FontSize="Medium"/>
-                        <Label Text="{Binding NameTest}" FontSize="Medium"/>
-                    </StackLayout>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+        <Label Text="Welcome to PlaceView"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+        <Button Text="GOTODETAILS"  Command="{Binding GoToDetailsCommand}" BackgroundColor="Red"/>
     </StackLayout>
 </ContentPage>
