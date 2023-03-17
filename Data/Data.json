@@ -1,9 +1,29 @@
 {
-	"LocationID": 1,
-	"Name": "Wieża Piastowska",
-	"Description": "Placeholder",
-	"Latitude": 50.667222,
-	"Longitude": 17.919167,
-	"IsCustom": false
-	
+	"Location": [
+		{
+			"LocationID": 1,
+			"Name": "Wieża Piastowska",
+			"Description": "Placeholder",
+			"Latitude": 50.667222,
+			"Longitude": 17.919167,
+			"IsCustom": false
+		},
+		{
+			"LocationID": 2,
+			"Name": "Muzeum Śląska Opolskiego",
+			"Description": "Placeholder",
+			"Latitude": 50.668938,
+			"Longitude": 17.924557,
+			"IsCustom": false
+		},
+		{
+			"LocationID": 3,
+			"Name": "Dworzec główny",
+			"Description": "Placeholder",
+			"Latitude": 50.66230699772743,
+			"Longitude": 17.926612010546016,
+			"IsCustom": false
+		}
+	]
 }
+
