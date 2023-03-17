@@ -9,6 +9,6 @@ namespace TourDeOpole.Models
         public int NoteID { get; set; }
         public string Content { get; set; }
         public string LocationID { get; set; }
-        public Location Location { get; set; }
+        public Places Location { get; set; }
     }
 }

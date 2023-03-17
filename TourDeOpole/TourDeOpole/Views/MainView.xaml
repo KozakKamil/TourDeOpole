@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TourDeOpole.Views.MainView">
     <StackLayout>
-        <Button Text="Pobierz JSON" Clicked="OnGetDataButtonClicked" />
-        <Label x:Name="locationLabel" />
+        <Button Text="Pobierz JSON" Command="{Binding GetDataCommand}"/>
+        <Label Text="{Binding LocationText}" />
     </StackLayout>
 </ContentPage>

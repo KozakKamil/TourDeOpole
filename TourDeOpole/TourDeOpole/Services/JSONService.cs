@@ -8,7 +8,7 @@ namespace TourDeOpole.Services
 {
     internal class JSONService
     {
-        public async static Task<Location> GetDataAsync(string url)
+        public async static Task<string> GetDataAsync(string url)
         {
             using (var httpClient = new HttpClient())
             {
@@ -16,8 +16,7 @@ namespace TourDeOpole.Services
                 if (response.IsSuccessStatusCode)
                 {
                     var json = await response.Content.ReadAsStringAsync();
-                    var data = JsonConvert.DeserializeObject<Location>(json);
-                    return data;
+                    return json;
                 }
                 else
                 {

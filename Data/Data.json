@@ -1,9 +1,8 @@
 {
 	"LocationID": 1,
 	"Name": "Wieża Piastowska",
-	"Description": "Placeholder,
+	"Description": "Placeholder",
 	"Latitude": 50.667222,
 	"Longitude": 17.919167,
 	"IsCustom": false
-	
 }

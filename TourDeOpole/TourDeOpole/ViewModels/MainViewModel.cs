@@ -1,16 +1,35 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
+using System.Windows.Input;
+using TourDeOpole.Services;
+using TourDeOpole.Models;
 using Xamarin.Essentials;
+using Xamarin.Forms;
 
 namespace TourDeOpole.ViewModels
 {
     //tutaj wszystkie metody, zwykle komendy 
 
-    public partial class MainViewModel:BaseViewModel 
+    public partial class MainViewModel : BaseViewModel
     {
+        private string _locationText;
+        public string LocationText
+        {
+            get { return _locationText; }
+            set { SetProperty(ref _locationText, value); }
+        }
 
+
+        public ICommand GetDataCommand { get; private set; }
+
+        public MainViewModel()
+        {
+            GetDataCommand = new Command(async () => await OnGetDataButtonClicked());
+        }
         public async void getLocation()
         {
             try
@@ -21,7 +40,7 @@ namespace TourDeOpole.ViewModels
                 var location = new Location(50.664286, 17.936186);
                 if (location != null)
                 {
-                    DisplayAlert("Tytuł",$"Latitude: {location.Latitude}, Longitude: {location.Longitude}, Altitude: {location.Altitude}","OK");
+                    DisplayAlert("Tytuł", $"Latitude: {location.Latitude}, Longitude: {location.Longitude}, Altitude: {location.Altitude}", "OK");
                 }
 
                 DisplayAlert("Tytuł", $"Dystans {CalculateDistanceBetweenLocation(location, mylocation)}", "Super");
@@ -44,6 +63,20 @@ namespace TourDeOpole.ViewModels
         public double CalculateDistanceBetweenLocation(Location location, Location myLocation)
         {
             return Location.CalculateDistance(location, myLocation, DistanceUnits.Kilometers);
+        }
+
+        private async Task OnGetDataButtonClicked()
+        {
+            var json = await JSONService.GetDataAsync("https://raw.githubusercontent.com/KozakKamil/TourDeOpole/master/Data/Data.json");
+            //var locations = JsonConvert.DeserializeObject<List<Places>>(json);
+
+            //var sb = new StringBuilder();
+            //foreach (var location in locations)
+            //{
+            //    sb.AppendLine($"Name: {location.Name}, Description: {location.Description}");
+            //}
+
+            LocationText = json.ToString();
         }
     }
 }

@@ -26,16 +26,5 @@ namespace TourDeOpole.Views
                 _viewModel.getLocation();
             };
         }
-
-        private async void LoadData()
-        {
-            var data = await JSONService.GetDataAsync("https://raw.githubusercontent.com/KozakKamil/TourDeOpole/master/Data/Data.json");
-            BindingContext = data;
-        }
-        private async void OnGetDataButtonClicked(object sender, EventArgs e)
-        {
-            var data = await JSONService.GetDataAsync("https://raw.githubusercontent.com/KozakKamil/TourDeOpole/master/Data/Data.json");
-            locationLabel.Text = $"Lokalizacja: {data.Name}, {data.Description}";
-        }
     }
 }
