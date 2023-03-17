@@ -4,6 +4,8 @@
              x:Class="TourDeOpole.Views.MainView">
     <StackLayout>
         <Label Text="Hello Xamarin.Forms!" />
+        <Button Text="Pobierz JSON" Command="{Binding GetDataCommand}"/>
+        <Label Text="{Binding LocationText}" />
         <Entry x:Name="nameEntry" Placeholder="Enter Name"/>
         <Button Text="Add to database" Clicked="OnButtonClickedDatabase"/>
         <CollectionView x:Name="collectionView">

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace TourDeOpole.Models
 {
-    public class Location
+    public class Places
     {
         public int LocationID { get; set; }
         public string Name { get; set; }
@@ -12,5 +12,6 @@ namespace TourDeOpole.Models
         public float Latitude { get; set; }
         public float Longitude { get; set; }
         public bool IsCustom { get; set; }
+
     }
 }
