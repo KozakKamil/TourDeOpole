@@ -13,13 +13,13 @@ namespace TourDeOpole.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
 
     //tutaj tylko to co dotyczy UI 
-    public partial class MainView : ContentPage
+    public partial class PlaceView : ContentPage
     {
-        MainViewModel _viewModel;
-        public MainView()
+        PlaceViewModel _viewModel;
+        public PlaceView()
         {
             InitializeComponent();
-            _viewModel = new MainViewModel();
+            _viewModel = new PlaceViewModel();
             BindingContext = _viewModel;
             Appearing += (sender, e) =>
             {

@@ -12,7 +12,7 @@ namespace TourDeOpole.Services
     {
         public NavigationService() 
         {
-            Routing.RegisterRoute(nameof(MainView), typeof(MainView));
+            Routing.RegisterRoute(nameof(PlaceView), typeof(PlaceView));
             Routing.RegisterRoute(nameof(PlaceDetailsView), typeof(PlaceDetailsView));
             Routing.RegisterRoute(nameof(TripView), typeof(TripView));
             Routing.RegisterRoute(nameof(TripDetailsView), typeof(TripDetailsView));
