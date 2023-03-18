@@ -4,8 +4,7 @@ using System.Text;
 
 namespace TourDeOpole.ViewModels
 {
-
-    public class LocationDetailsViewModel:BaseViewModel
+    public class AddTripViewModel : BaseViewModel
     {
     }
 }

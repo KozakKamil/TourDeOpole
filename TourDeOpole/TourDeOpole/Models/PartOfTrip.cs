@@ -10,7 +10,7 @@ namespace TourDeOpole.Models
         public int TripID { get; set; }
         public Trip Trip { get; set; }
         public int LocationID { get; set; }
-        public Places Location { get; set; }
+        public Place Location { get; set; }
 
     }
 }

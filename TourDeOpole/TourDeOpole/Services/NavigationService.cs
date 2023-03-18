@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using TourDeOpole.Views;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml.Internals;
 
 namespace TourDeOpole.Services
 {
@@ -10,12 +12,44 @@ namespace TourDeOpole.Services
     {
         public NavigationService() 
         {
-            Routing.RegisterRoute(nameof(MainView), typeof(MainView));
+            Routing.RegisterRoute(nameof(PlaceView), typeof(PlaceView));
+            Routing.RegisterRoute(nameof(PlaceDetailsView), typeof(PlaceDetailsView));
+            Routing.RegisterRoute(nameof(TripView), typeof(TripView));
+            Routing.RegisterRoute(nameof(TripDetailsView), typeof(TripDetailsView));
+            Routing.RegisterRoute(nameof(ScanQRView), typeof(ScanQRView));
+            Routing.RegisterRoute(nameof(ShareQRView), typeof(ShareQRView)); 
+            Routing.RegisterRoute(nameof(SimpleAddView), typeof(SimpleAddView));
+            Routing.RegisterRoute(nameof(AddTripView), typeof(AddTripView));
         }
 
-        private async void GoToMainView()
+        public static async Task GoToTripDetails()
         {
-            await Shell.Current.GoToAsync("//MainView");
+            await Shell.Current.GoToAsync(nameof(TripDetailsView));
+        }
+
+        public static async Task GoToPlaceDetails()
+        {
+            await Shell.Current.GoToAsync(nameof(PlaceDetailsView));
+        }
+
+        public static async Task GoToShareQR()
+        {
+            await Shell.Current.GoToAsync(nameof(ShareQRView));
+        }
+
+        public static async Task GoToScanQR()
+        {
+            await Shell.Current.GoToAsync(nameof(ScanQRView));
+        }
+
+        public static async Task GoToAdd()
+        {
+            await Shell.Current.GoToAsync(nameof(SimpleAddView));
+        }
+
+        public static async Task GoToAddTrip()
+        {
+            await Shell.Current.GoToAsync(nameof(AddTripView));
         }
     }
 }
