@@ -20,14 +20,14 @@
             </Entry>
         </Frame>
 
-        <CollectionView ItemsSource="{Binding myTrip}" Grid.Row="3" Grid.ColumnSpan="2" Margin="30,30,30,0">
+        <CollectionView ItemsSource="{Binding myTrip}" Grid.Row="3" Grid.ColumnSpan="2" Margin="20,30,20,0">
             <CollectionView.ItemsLayout>
                 <GridItemsLayout Orientation="Vertical"  HorizontalItemSpacing="0" VerticalItemSpacing="15"
                          Span="2"/>
             </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="models:Trip">
-                    <Frame Padding="0,0,0,0" BackgroundColor="{DynamicResource Primary}">
+                    <Frame Padding="5,0,5,0" BackgroundColor="{DynamicResource Primary}">
                     <Frame CornerRadius="10">
                         <Grid RowDefinitions="7*,1*,1*">
                             <Image Grid.Row="0" Source="{Binding Image}" Aspect="AspectFill" Margin="-20,-20,-20,0"/>
