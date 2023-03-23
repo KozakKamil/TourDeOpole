@@ -27,12 +27,14 @@
             </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="models:Trip">
-                    <Frame CornerRadius="10" Margin="0,0,0,0">
+                    <Frame Padding="0,0,0,0" BackgroundColor="{DynamicResource Primary}">
+                    <Frame CornerRadius="10">
                         <Grid RowDefinitions="7*,1*,1*">
                             <Image Grid.Row="0" Source="{Binding Image}" Aspect="AspectFill" Margin="-20,-20,-20,0"/>
                             <Label Grid.Row="1"  Text="{Binding Name}"/>
                             <Label Grid.Row="2" Text="{Binding Time}"/>
                         </Grid>
+                    </Frame>
                     </Frame>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
