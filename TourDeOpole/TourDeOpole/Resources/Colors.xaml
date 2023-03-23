@@ -3,4 +3,5 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
     <!--Na razie trzeba się odwoływac jako DynamicResource--> 
     <Color x:Key="Primary">#2196F3</Color>
+    <Color x:Key="Secondary">#2196C3</Color>
 </ResourceDictionary>
