@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SQLite;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -6,7 +7,9 @@ namespace TourDeOpole.Models
 {
     public class Question
     {
+        [PrimaryKey, AutoIncrement]
         public int QuestionID { get; set; }
+
         public string Content { get; set; }
         public string AnswerA { get; set; }
         public string AnswerB { get; set; }
