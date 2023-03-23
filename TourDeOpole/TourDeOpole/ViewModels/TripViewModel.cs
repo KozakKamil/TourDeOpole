@@ -21,11 +21,11 @@ namespace TourDeOpole.ViewModels
             GoToDetailsCommand = new Command(GoToDetails);
             GoToAddCommand = new Command(GoToAddTrip);
             myTrip = new ObservableCollection<Trip>()
-        {
-            new Trip {Image = "TopImage.jpg", Name = "Trip 1", Time = "1h30m" },
-            new Trip {Image = "TopImage.jpg", Name = "Trip 2", Time = "1h30m" },
-            new Trip {Image = "TopImage.jpg", Name = "Trip 3", Time = "1h30m" }
-        };
+            {
+                new Trip {Image = "TopImage.jpg", Name = "Trip 1", Time = "1h30m" },
+                new Trip {Image = "TopImage.jpg", Name = "Trip 2", Time = "1h30m" },
+                new Trip {Image = "TopImage.jpg", Name = "Trip 3", Time = "1h30m" }
+            };
         }
 
         private async void GoToDetails()
