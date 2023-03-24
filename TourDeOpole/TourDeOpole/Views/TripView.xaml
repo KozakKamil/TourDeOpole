@@ -1,16 +1,53 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:tool="http://xamarin.com/schemas/2020/toolkit"
              xmlns:viewmodels="clr-namespace:TourDeOpole.ViewModels" x:DataType="viewmodels:TripViewModel"
+             xmlns:models="clr-namespace:TourDeOpole.Models"
              x:Class="TourDeOpole.Views.TripView"
+             Shell.NavBarIsVisible="False"
              Title="TripView">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to TripView"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-            <Button Text="GoToDetails" Command="{Binding GoToDetailsCommand}" BackgroundColor="Red"/>
-            <Button Text="GoToAdd" Command="{Binding GoToAddCommand}" BackgroundColor="Red"/>
+    <Grid RowDefinitions="120,50,50,auto" BackgroundColor="{DynamicResource Background}"
+          ColumnDefinitions="50,1*">
+        <Image Source="TopImage.png" Aspect="AspectFill" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" />
+        <Image Source="Pin.png" HorizontalOptions="Start" Margin="10,0,0,0" Grid.Row="1"/>
+        <StackLayout Grid.Row="1" Grid.Column="1">
+            <Label Text="Opole" HorizontalOptions="Start" Margin="0,5,0,0" Grid.Row="1" Grid.Column="1"/>
+            <Label Text="Oleska 28" HorizontalOptions="Start" Margin="0,-5,0,0" Grid.Row="1" Grid.Column="1"/>
         </StackLayout>
-    </ContentPage.Content>
+        <Grid Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2">
+            <Frame  Margin="10,0,10,0" Padding="0" CornerRadius="10">
+                <Entry Placeholder="" BackgroundColor="White" Margin="30,0,0,0"/>
+            </Frame>
+            <Image HorizontalOptions="Start" HeightRequest="100"  Margin="20,0,0,0" Source="Search.png"/>
+        </Grid>
+
+
+
+        <CollectionView ItemsSource="{Binding myTrip}" Grid.Row="3" Grid.ColumnSpan="2" Margin="20,30,20,0">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical"  HorizontalItemSpacing="0" VerticalItemSpacing="15"
+                         Span="2"/>
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:Trip">
+                    <Frame Padding="5,0,5,0" BackgroundColor="{DynamicResource Background}">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:TripViewModel}},Path=GoToDetailsCommand}" CommandParameter="{Binding .}"/>
+                        </Frame.GestureRecognizers>
+                        <Frame CornerRadius="10">
+                            <Grid RowDefinitions="7*,1*,1*" >
+                                <Image Grid.Row="0" Source="{Binding Image}" Aspect="AspectFill" Margin="-20,-20,-20,0"/>
+                                <Label Grid.Row="1"  Text="{Binding Name}"/>
+                                    <Label Grid.Row="2" Text="{Binding Time}"/>
+                            </Grid>
+                        </Frame>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <ImageButton Grid.Row="3" Grid.Column="1" Source="AddButton.png" HorizontalOptions="End" VerticalOptions="End" Margin="0,0,20,10" Command="{Binding GoToAddCommand}" BackgroundColor="{DynamicResource Background}"/>
+
+        <Button Text="GoToDetails" Command="{Binding GoToDetailsCommand}"  Grid.Row="3" HorizontalOptions="Start" VerticalOptions="End" HeightRequest="50" WidthRequest="50" Margin="10" Grid.Column="0"/>
+    </Grid>
 </ContentPage>
