@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using TourDeOpole.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using ZXing;
+using ZXing.Net.Mobile.Forms;
+using ZXing.QrCode;
 
 namespace TourDeOpole.Views
 {
