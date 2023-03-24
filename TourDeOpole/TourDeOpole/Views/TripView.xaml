@@ -7,7 +7,7 @@
              x:Class="TourDeOpole.Views.TripView"
              Shell.NavBarIsVisible="False"
              Title="TripView">
-    <Grid RowDefinitions="120,50,50,auto" BackgroundColor="{DynamicResource Primary}"
+    <Grid RowDefinitions="120,50,50,auto" BackgroundColor="{DynamicResource Background}"
           ColumnDefinitions="50,1*">
         <Image Source="TopImage.png" Aspect="AspectFill" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" />
         <Image Source="Pin.png" HorizontalOptions="Start" Margin="10,0,0,0" Grid.Row="1"/>
@@ -31,9 +31,12 @@
             </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="models:Trip">
-                    <Frame Padding="5,0,5,0" BackgroundColor="{DynamicResource Primary}">
+                    <Frame Padding="5,0,5,0" BackgroundColor="{DynamicResource Background}">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:TripViewModel}},Path=GoToDetailsCommand}" CommandParameter="{Binding .}"/>
+                        </Frame.GestureRecognizers>
                         <Frame CornerRadius="10">
-                            <Grid RowDefinitions="7*,1*,1*">
+                            <Grid RowDefinitions="7*,1*,1*" >
                                 <Image Grid.Row="0" Source="{Binding Image}" Aspect="AspectFill" Margin="-20,-20,-20,0"/>
                                 <Label Grid.Row="1"  Text="{Binding Name}"/>
                                     <Label Grid.Row="2" Text="{Binding Time}"/>
@@ -43,7 +46,7 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-        <ImageButton Grid.Row="3" Grid.Column="1" Source="AddButton.png" HorizontalOptions="End" VerticalOptions="End" Margin="0,0,20,10" Command="{Binding GoToAddCommand}"/>
+        <ImageButton Grid.Row="3" Grid.Column="1" Source="AddButton.png" HorizontalOptions="End" VerticalOptions="End" Margin="0,0,20,10" Command="{Binding GoToAddCommand}" BackgroundColor="{DynamicResource Background}"/>
 
         <Button Text="GoToDetails" Command="{Binding GoToDetailsCommand}"  Grid.Row="3" HorizontalOptions="Start" VerticalOptions="End" HeightRequest="50" WidthRequest="50" Margin="10" Grid.Column="0"/>
     </Grid>
