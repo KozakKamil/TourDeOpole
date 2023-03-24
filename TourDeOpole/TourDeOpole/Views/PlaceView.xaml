@@ -3,13 +3,42 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:viewmodels="clr-namespace:TourDeOpole.ViewModels" 
              x:DataType="viewmodels:PlaceViewModel"
+             xmlns:models="clr-namespace:TourDeOpole.Models"
              x:Class="TourDeOpole.Views.PlaceView"
+             Shell.NavBarIsVisible="False"
              Title="PlaceView">
-    <StackLayout>
-        <Label Text="Welcome to PlaceView"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        <Button Text="GOTODETAILS"  Command="{Binding GoToDetailsCommand}" BackgroundColor="Red"/>
-        <Button Text="GOTOADD"  Command="{Binding GoToAddCommand}" BackgroundColor="Red"/>
-    </StackLayout>
+    <Grid RowDefinitions="120,50,50,auto,50" ColumnDefinitions="50,1*">
+        <Image Source="image_top_background.png" BackgroundColor="Red" Aspect="AspectFill" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" />
+        <Image Source="Pin.png" HorizontalOptions="Start" Margin="10,0,0,0" Grid.Row="1"/>
+        <StackLayout Grid.Row="1" Grid.Column="1">
+            <Label Text="Opole" HorizontalOptions="Start" Margin="0,5,0,0" Grid.Row="1" Grid.Column="1"/>
+            <Label Text="Oleska 28" HorizontalOptions="Start" Margin="0,-5,0,0" Grid.Row="1" Grid.Column="1"/>
+        </StackLayout>
+        <Frame Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" Margin="10,0,10,0" BackgroundColor="Red" Padding="0" CornerRadius="10">
+            <Entry Placeholder="Name"  BackgroundColor="White">
+            </Entry>
+        </Frame>
+
+        <CollectionView ItemsSource="{Binding myPlace}" Grid.Row="3" Grid.ColumnSpan="2" Margin="30,30,30,0">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical"  HorizontalItemSpacing="0" VerticalItemSpacing="15"
+                         Span="2"/>
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:Place">
+                    <Frame Padding="0,0,0,0" BackgroundColor="{DynamicResource Primary}">
+                        <Frame CornerRadius="10">
+                            <Grid RowDefinitions="7*,1*,1*">
+                                <Image Grid.Row="0" Source="{Binding Image}" Aspect="AspectFill" Margin="-20,-20,-20,0"/>
+                                <Label Grid.Row="1"  Text="{Binding Name}"/>
+                                <Label Grid.Row="2" Text="{Binding Description}"/>
+                            </Grid>
+                        </Frame>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <Button Text="GoToDetails" Command="{Binding GoToDetailsCommand}" BackgroundColor="Red" Grid.Row="4" Grid.Column="0"/>
+        <Button Text="GoToAdd" Command="{Binding GoToAddCommand}" BackgroundColor="Red" Grid.Row="4" Grid.Column="1"/>
+    </Grid>
 </ContentPage>

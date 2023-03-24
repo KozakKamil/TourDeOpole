@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.Threading;
+using TourDeOpole.Models;
 using TourDeOpole.Services;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+
 
 namespace TourDeOpole.ViewModels
 {
@@ -12,10 +15,18 @@ namespace TourDeOpole.ViewModels
     {
         public Command GoToDetailsCommand { get; set; }
         public Command GoToAddCommand { get; set; }
+        public ObservableCollection<Place> myPlace { get; set; }
         public PlaceViewModel()
         {
+
             GoToDetailsCommand = new Command(GoToDetails);
             GoToAddCommand = new Command(GoToAddPlace);
+            myPlace = new ObservableCollection<Place>()
+        {
+            new Place {Image = "image_top_background.png", Name = "Place 1", Description = "asd1" },
+            new Place {Image = "image_top_background.png", Name = "Place 2", Description = "asd2" },
+            new Place {Image = "image_top_background.png", Name = "Place 3", Description = "asd3" }
+        };
         }
 
         #region GetLocation
