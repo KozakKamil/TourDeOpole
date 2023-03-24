@@ -3,5 +3,6 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
     <!--Na razie trzeba się odwoływac jako DynamicResource-->
     <Color x:Key="Primary">#94A5C1</Color>
-    
+    <Color x:Key="Background">#EDF2FA</Color>
+    <Color x:Key="ButtonColor">#7B5BF2</Color>
 </ResourceDictionary>
