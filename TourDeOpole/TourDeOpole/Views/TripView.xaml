@@ -11,7 +11,7 @@
           ColumnDefinitions="50,1*,50">
         <Image Source="TopImage.png" Aspect="AspectFill" Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="0" />
         <Image Source="Pin.png" HorizontalOptions="Start" Margin="10,0,0,0" Grid.Row="1"/>
-        <Button Grid.Row="1" Grid.Column="3" Margin="10" Text="GoToScan" FontSize="10" Command="{Binding GoToScanQRCommand }"/>
+        <Button Grid.Row="1" Grid.Column="3" Margin="10" WidthRequest="50" HorizontalOptions="End" Text="Scan" FontSize="10" Command="{Binding GoToScanQRCommand }"/>
         <StackLayout Grid.Row="1" Grid.Column="1">
             <Label Text="Opole" HorizontalOptions="Start" Margin="0,5,0,0" Grid.Row="1" Grid.Column="1"/>
             <Label Text="Oleska 28" HorizontalOptions="Start" Margin="0,-5,0,0" Grid.Row="1" Grid.Column="1"/>

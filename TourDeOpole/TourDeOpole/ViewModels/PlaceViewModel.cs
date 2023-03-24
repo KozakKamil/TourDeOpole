@@ -15,12 +15,16 @@ namespace TourDeOpole.ViewModels
     {
         public Command GoToDetailsCommand { get; set; }
         public Command GoToAddCommand { get; set; }
+        public Command GoToScanQRCommand { get; set; }
+
         public ObservableCollection<Place> myPlace { get; set; }
         public PlaceViewModel()
         {
 
             GoToDetailsCommand = new Command(GoToDetails);
             GoToAddCommand = new Command(GoToAddPlace);
+            GoToScanQRCommand = new Command(GoToScanQR);
+
             myPlace = new ObservableCollection<Place>()
         {
             new Place {Image = "TopImage.jpg", Name = "Place 1", Description = "xdxdxd, xdx x xd xdxddd xdxdxd xdx xdxdxd xdx xdx xdxdxd xddddd xdxdxd xdxdxd xdxdxd" },
@@ -33,6 +37,11 @@ namespace TourDeOpole.ViewModels
             new Place {Image = "TopImage.jpg", Name = "Place 3", Description = "xdxdxd, xdx x xd xdxddd xdxdxd xdx xdxdxd xdx xdx xdxdxd xddddd xdxdxd xdxdxd xdxdxd" }
         };
         }
+        private async void GoToScanQR()
+        {
+            await NavigationService.GoToScanQR();
+        }
+
 
         #region GetLocation
         public async void getLocation()
