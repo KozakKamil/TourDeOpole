@@ -25,6 +25,11 @@ namespace TourDeOpole.ViewModels
         {
             new Place {Image = "TopImage.jpg", Name = "Place 1", Description = "xdxdxd, xdx x xd xdxddd xdxdxd xdx xdxdxd xdx xdx xdxdxd xddddd xdxdxd xdxdxd xdxdxd" },
             new Place {Image = "TopImage.jpg", Name = "Place 2", Description = "xdxdxd, xdx x xd xdxddd xdxdxd xdx xdxdxd xdx xdx xdxdxd xddddd xdxdxd xdxdxd xdxdxd" },
+            new Place {Image = "TopImage.jpg", Name = "Place 2", Description = "xdxdxd, xdx x xd xdxddd xdxdxd xdx xdxdxd xdx xdx xdxdxd xddddd xdxdxd xdxdxd xdxdxd" },
+            new Place {Image = "TopImage.jpg", Name = "Place 2", Description = "xdxdxd, xdx x xd xdxddd xdxdxd xdx xdxdxd xdx xdx xdxdxd xddddd xdxdxd xdxdxd xdxdxd" },
+            new Place {Image = "TopImage.jpg", Name = "Place 2", Description = "xdxdxd, xdx x xd xdxddd xdxdxd xdx xdxdxd xdx xdx xdxdxd xddddd xdxdxd xdxdxd xdxdxd" },
+            new Place {Image = "TopImage.jpg", Name = "Place 2", Description = "xdxdxd, xdx x xd xdxddd xdxdxd xdx xdxdxd xdx xdx xdxdxd xddddd xdxdxd xdxdxd xdxdxd" },
+            new Place {Image = "TopImage.jpg", Name = "Place 2", Description = "xdxdxd, xdx x xd xdxddd xdxdxd xdx xdxdxd xdx xdx xdxdxd xddddd xdxdxd xdxdxd xdxdxd" },
             new Place {Image = "TopImage.jpg", Name = "Place 3", Description = "xdxdxd, xdx x xd xdxddd xdxdxd xdx xdxdxd xdx xdx xdxdxd xddddd xdxdxd xdxdxd xdxdxd" }
         };
         }
