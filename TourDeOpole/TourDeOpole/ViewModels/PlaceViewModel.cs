@@ -23,9 +23,9 @@ namespace TourDeOpole.ViewModels
             GoToAddCommand = new Command(GoToAddPlace);
             myPlace = new ObservableCollection<Place>()
         {
-            new Place {Image = "image_top_background.png", Name = "Place 1", Description = "asd1" },
-            new Place {Image = "image_top_background.png", Name = "Place 2", Description = "asd2" },
-            new Place {Image = "image_top_background.png", Name = "Place 3", Description = "asd3" }
+            new Place {Image = "TopImage.jpg", Name = "Place 1", Description = "xdxdxd, xdx x xd xdxddd xdxdxd xdx xdxdxd xdx xdx xdxdxd xddddd xdxdxd xdxdxd xdxdxd" },
+            new Place {Image = "TopImage.jpg", Name = "Place 2", Description = "xdxdxd, xdx x xd xdxddd xdxdxd xdx xdxdxd xdx xdx xdxdxd xddddd xdxdxd xdxdxd xdxdxd" },
+            new Place {Image = "TopImage.jpg", Name = "Place 3", Description = "xdxdxd, xdx x xd xdxddd xdxdxd xdx xdxdxd xdx xdx xdxdxd xddddd xdxdxd xdxdxd xdxdxd" }
         };
         }
 
