@@ -26,6 +26,14 @@ namespace TourDeOpole.ViewModels
             {
                 new Trip {Image = "TopImage.jpg", Name = "Trip 1", Time = "1h30m" },
                 new Trip {Image = "TopImage.jpg", Name = "Trip 2", Time = "1h30m" },
+                new Trip {Image = "TopImage.jpg", Name = "Trip 1", Time = "1h30m" },
+                new Trip {Image = "TopImage.jpg", Name = "Trip 2", Time = "1h30m" },
+                new Trip {Image = "TopImage.jpg", Name = "Trip 1", Time = "1h30m" },
+                new Trip {Image = "TopImage.jpg", Name = "Trip 2", Time = "1h30m" },
+                new Trip {Image = "TopImage.jpg", Name = "Trip 1", Time = "1h30m" },
+                new Trip {Image = "TopImage.jpg", Name = "Trip 2", Time = "1h30m" },
+                new Trip {Image = "TopImage.jpg", Name = "Trip 1", Time = "1h30m" },
+                new Trip {Image = "TopImage.jpg", Name = "Trip 2", Time = "1h30m" },
                 new Trip {Image = "TopImage.jpg", Name = "Trip 3", Time = "1h30m" }
             };
         }

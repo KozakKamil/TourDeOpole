@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.Threading;
+using TourDeOpole.Models;
 using TourDeOpole.Services;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+
 
 namespace TourDeOpole.ViewModels
 {
@@ -12,11 +15,33 @@ namespace TourDeOpole.ViewModels
     {
         public Command GoToDetailsCommand { get; set; }
         public Command GoToAddCommand { get; set; }
+        public Command GoToScanQRCommand { get; set; }
+
+        public ObservableCollection<Place> myPlace { get; set; }
         public PlaceViewModel()
         {
+
             GoToDetailsCommand = new Command(GoToDetails);
             GoToAddCommand = new Command(GoToAddPlace);
+            GoToScanQRCommand = new Command(GoToScanQR);
+
+            myPlace = new ObservableCollection<Place>()
+        {
+            new Place {Image = "TopImage.jpg", Name = "Place 1", Description = "xdxdxd, xdx x xd xdxddd xdxdxd xdx xdxdxd xdx xdx xdxdxd xddddd xdxdxd xdxdxd xdxdxd" },
+            new Place {Image = "TopImage.jpg", Name = "Place 2", Description = "xdxdxd, xdx x xd xdxddd xdxdxd xdx xdxdxd xdx xdx xdxdxd xddddd xdxdxd xdxdxd xdxdxd" },
+            new Place {Image = "TopImage.jpg", Name = "Place 2", Description = "xdxdxd, xdx x xd xdxddd xdxdxd xdx xdxdxd xdx xdx xdxdxd xddddd xdxdxd xdxdxd xdxdxd" },
+            new Place {Image = "TopImage.jpg", Name = "Place 2", Description = "xdxdxd, xdx x xd xdxddd xdxdxd xdx xdxdxd xdx xdx xdxdxd xddddd xdxdxd xdxdxd xdxdxd" },
+            new Place {Image = "TopImage.jpg", Name = "Place 2", Description = "xdxdxd, xdx x xd xdxddd xdxdxd xdx xdxdxd xdx xdx xdxdxd xddddd xdxdxd xdxdxd xdxdxd" },
+            new Place {Image = "TopImage.jpg", Name = "Place 2", Description = "xdxdxd, xdx x xd xdxddd xdxdxd xdx xdxdxd xdx xdx xdxdxd xddddd xdxdxd xdxdxd xdxdxd" },
+            new Place {Image = "TopImage.jpg", Name = "Place 2", Description = "xdxdxd, xdx x xd xdxddd xdxdxd xdx xdxdxd xdx xdx xdxdxd xddddd xdxdxd xdxdxd xdxdxd" },
+            new Place {Image = "TopImage.jpg", Name = "Place 3", Description = "xdxdxd, xdx x xd xdxddd xdxdxd xdx xdxdxd xdx xdx xdxdxd xddddd xdxdxd xdxdxd xdxdxd" }
+        };
         }
+        private async void GoToScanQR()
+        {
+            await NavigationService.GoToScanQR();
+        }
+
 
         #region GetLocation
         public async void getLocation()

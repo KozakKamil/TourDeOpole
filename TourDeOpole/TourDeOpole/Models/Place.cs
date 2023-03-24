@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Xamarin.Forms;
 
 namespace TourDeOpole.Models
 {
@@ -9,6 +10,7 @@ namespace TourDeOpole.Models
     {
         [PrimaryKey, AutoIncrement]
         public int PlaceID { get; set; }
+        public string Image { get; set; }   
         public string Name { get; set; }
         public string Description { get; set; }
         public double Latitude { get; set; }
