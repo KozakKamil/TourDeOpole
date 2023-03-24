@@ -47,7 +47,5 @@
             </CollectionView.ItemTemplate>
         </CollectionView>
         <ImageButton Grid.Row="3" Grid.Column="1" Source="AddButton.png" HorizontalOptions="End" VerticalOptions="End" Margin="0,0,20,10" Command="{Binding GoToAddCommand}" BackgroundColor="{DynamicResource Background}"/>
-
-        <Button Text="GoToDetails" Command="{Binding GoToDetailsCommand}"  Grid.Row="3" HorizontalOptions="Start" VerticalOptions="End" HeightRequest="50" WidthRequest="50" Margin="10" Grid.Column="0"/>
     </Grid>
 </ContentPage>
