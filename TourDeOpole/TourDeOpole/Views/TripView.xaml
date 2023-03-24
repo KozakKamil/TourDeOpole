@@ -8,14 +8,16 @@
              Shell.NavBarIsVisible="False"
              Title="TripView">
     <Grid RowDefinitions="120,50,50,auto" BackgroundColor="{DynamicResource Background}"
-          ColumnDefinitions="50,1*">
-        <Image Source="TopImage.png" Aspect="AspectFill" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" />
+          ColumnDefinitions="50,1*,50">
+        <Image Source="TopImage.png" Aspect="AspectFill" Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="0" />
         <Image Source="Pin.png" HorizontalOptions="Start" Margin="10,0,0,0" Grid.Row="1"/>
+        <Button Grid.Row="1" Grid.Column="3" Margin="10" Text="GoToScan" FontSize="10" Command="{Binding GoToScanQRCommand }"/>
         <StackLayout Grid.Row="1" Grid.Column="1">
             <Label Text="Opole" HorizontalOptions="Start" Margin="0,5,0,0" Grid.Row="1" Grid.Column="1"/>
             <Label Text="Oleska 28" HorizontalOptions="Start" Margin="0,-5,0,0" Grid.Row="1" Grid.Column="1"/>
         </StackLayout>
-        <Grid Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2">
+
+        <Grid Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="2">
             <Frame  Margin="10,0,10,0" Padding="0" CornerRadius="10">
                 <Entry Placeholder="" BackgroundColor="White" Margin="30,0,0,0"/>
             </Frame>
@@ -24,7 +26,7 @@
 
 
 
-        <CollectionView ItemsSource="{Binding myTrip}" Grid.Row="3" Grid.ColumnSpan="2" Margin="20,30,20,0">
+        <CollectionView ItemsSource="{Binding myTrip}" Grid.Row="3" Grid.ColumnSpan="4" Margin="20,30,20,0">
             <CollectionView.ItemsLayout>
                 <GridItemsLayout Orientation="Vertical"  HorizontalItemSpacing="0" VerticalItemSpacing="15"
                          Span="2"/>
@@ -46,6 +48,6 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-        <ImageButton Grid.Row="3" Grid.Column="1" Source="AddButton.png" HorizontalOptions="End" VerticalOptions="End" Margin="0,0,20,10" Command="{Binding GoToAddCommand}" BackgroundColor="{DynamicResource Background}"/>
+        <ImageButton Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Source="AddButton.png" HorizontalOptions="End" VerticalOptions="End" Margin="0,0,20,10" Command="{Binding GoToAddCommand}" BackgroundColor="{DynamicResource Background}"/>
     </Grid>
 </ContentPage>

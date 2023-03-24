@@ -14,12 +14,14 @@ namespace TourDeOpole.ViewModels
     {
         public Command GoToDetailsCommand { get; set; }
         public Command GoToAddCommand { get; set; }
+        public Command GoToScanQRCommand { get; set; }
         public ObservableCollection<Trip> myTrip { get; set; }
         public TripViewModel()
         {
 
             GoToDetailsCommand = new Command(GoToDetails);
             GoToAddCommand = new Command(GoToAddTrip);
+            GoToScanQRCommand = new Command(GoToScanQR);
             myTrip = new ObservableCollection<Trip>()
             {
                 new Trip {Image = "TopImage.jpg", Name = "Trip 1", Time = "1h30m" },
@@ -36,7 +38,10 @@ namespace TourDeOpole.ViewModels
         {
             await NavigationService.GoToAddTrip();
         }
-
+        private async void GoToScanQR()
+        {
+            await NavigationService.GoToScanQR();
+        }
      
     }
 }
