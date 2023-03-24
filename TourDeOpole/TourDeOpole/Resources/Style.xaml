@@ -2,13 +2,34 @@
 <ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
+    <!--Custom Style-->
+    <Style x:Key="CuatomContentPage" TargetType="ContentPage">
+        <Setter Property="BackgroundColor" Value="{DynamicResource Background}"/>
+    </Style>
+
+    <Style x:Key="ImportantButton" TargetType="Button">
+        <Setter Property="Background" Value="{DynamicResource ButtonColor}"/>
+        <Setter Property="TextColor" Value="{DynamicResource Background}"/>
+        <Setter Property="HeightRequest" Value="40"/>
+        <Setter Property="WidthRequest" Value="50"/>
+        <Setter Property="CornerRadius" Value="10"/>
+    </Style>
+    
+    
+    
+    
+    
+    
+    
+    
+    <!--Base Style--> 
     <Style x:Key="BaseStyle" TargetType="Element">
         <Setter Property="Shell.BackgroundColor" Value="{DynamicResource Primary}" />
         <Setter Property="Shell.ForegroundColor" Value="White" />
         <Setter Property="Shell.TitleColor" Value="White" />
         <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />
         <Setter Property="Shell.UnselectedColor" Value="#95FFFFFF" />
-        <Setter Property="Shell.TabBarBackgroundColor" Value="#2196F3" />
+        <Setter Property="Shell.TabBarBackgroundColor" Value="{DynamicResource Primary}" />
         <Setter Property="Shell.TabBarForegroundColor" Value="White"/>
         <Setter Property="Shell.TabBarUnselectedColor" Value="#95FFFFFF"/>
         <Setter Property="Shell.TabBarTitleColor" Value="White"/>
@@ -35,5 +56,4 @@
             </VisualStateGroupList>
         </Setter>
     </Style>
-
 </ResourceDictionary>
