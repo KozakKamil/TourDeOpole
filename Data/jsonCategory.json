@@ -1,0 +1,34 @@
+[
+  {
+    "CategoryID": 1,
+    "Name": "Muzea"
+  },
+  {
+    "CategoryID": 2,
+    "Name": "Restauracje"
+  },
+  {
+    "CategoryID": 3,
+    "Name": "Sztuka"
+  },
+  {
+    "CategoryID": 4,
+    "Name": "Parki"
+  },
+  {
+    "CategoryID": 5,
+    "Name": "Atrakce"
+  },
+  {
+    "CategoryID": 6,
+    "Name": "Pomniki"
+  },
+  {
+    "CategoryID": 7,
+    "Name": "Budynki historyczne"
+  },
+  {
+    "CategoryID": 8,
+    "Name": "Miejsca historyczne"
+  }
+]
