@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Text;
 using System.Threading.Tasks;
 using TourDeOpole.Models;
+using TourDeOpole.Repository;
 using TourDeOpole.Services;
 using Xamarin.Forms;
 using Xamarin.Forms.Shapes;
@@ -18,24 +19,10 @@ namespace TourDeOpole.ViewModels
         public ObservableCollection<Trip> myTrip { get; set; }
         public TripViewModel()
         {
-
             GoToDetailsCommand = new Command(GoToDetails);
             GoToAddCommand = new Command(GoToAddTrip);
             GoToScanQRCommand = new Command(GoToScanQR);
-            myTrip = new ObservableCollection<Trip>()
-            {
-                new Trip {Image = "TopImage.jpg", Name = "Trip 1", Time = "1h30m" },
-                new Trip {Image = "TopImage.jpg", Name = "Trip 2", Time = "1h30m" },
-                new Trip {Image = "TopImage.jpg", Name = "Trip 1", Time = "1h30m" },
-                new Trip {Image = "TopImage.jpg", Name = "Trip 2", Time = "1h30m" },
-                new Trip {Image = "TopImage.jpg", Name = "Trip 1", Time = "1h30m" },
-                new Trip {Image = "TopImage.jpg", Name = "Trip 2", Time = "1h30m" },
-                new Trip {Image = "TopImage.jpg", Name = "Trip 1", Time = "1h30m" },
-                new Trip {Image = "TopImage.jpg", Name = "Trip 2", Time = "1h30m" },
-                new Trip {Image = "TopImage.jpg", Name = "Trip 1", Time = "1h30m" },
-                new Trip {Image = "TopImage.jpg", Name = "Trip 2", Time = "1h30m" },
-                new Trip {Image = "TopImage.jpg", Name = "Trip 3", Time = "1h30m" }
-            };
+            myTrip = new ObservableCollection<Trip>();
         }
 
         private async void GoToDetails()
@@ -44,7 +31,11 @@ namespace TourDeOpole.ViewModels
         }
         private async void GoToAddTrip()
         {
-            await NavigationService.GoToAddTrip();
+            for (int i = 0; i < 10; i++)
+            {
+                myTrip.Add(new Trip { Image = "TopImage.jpg", Name = "Trip 1", Time = "1h30m" });
+            }
+            //await NavigationService.GoToAddTrip();
         }
         private async void GoToScanQR()
         {
