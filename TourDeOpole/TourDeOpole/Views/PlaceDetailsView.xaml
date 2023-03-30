@@ -4,20 +4,43 @@
              xmlns:viewmodels="clr-namespace:TourDeOpole.ViewModels"
              x:DataType="viewmodels:PlaceDetailsViewModel"
              x:Class="TourDeOpole.Views.PlaceDetailsView"
-             Shell.NavBarIsVisible="False"
-             Title="PlaceDetailsView">
-    <Grid RowDefinitions="50,75,75,*,50,50" ColumnDefinitions="*,*,150,*,*"  BackgroundColor="#edf2fa">
-        <Frame Grid.ColumnSpan="5" Grid.RowSpan="2" BackgroundColor="#94a5c1 "/>
-        <Image Source="Back.png" Grid.Column="0" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="End"/>
-        <Image Source="Share.png" Grid.Column="4" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="End"/>
-        <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" HorizontalOptions="Center" Text="Jakies znane miejsce" TextColor="White" FontSize="Large" VerticalOptions="Center"/>
-        <Frame CornerRadius="100" HorizontalOptions="Center" Padding="0" IsClippedToBounds="True" Grid.Column="2" Grid.Row="1" Grid.RowSpan="2" Grid.ColumnSpan="1" HeightRequest="250" WidthRequest="250">
-            <Image Source="TopImage.png" Aspect="Fill"/>
+             Shell.NavBarHasShadow="False"
+             Title="Jakies znane miejsce">
+    
+    <Grid RowDefinitions="25,25,100,75,*,50,50" 
+          ColumnDefinitions="*,*,150,*,*"
+          BackgroundColor="{DynamicResource Background}">
+        <Frame Grid.ColumnSpan="5" 
+               Grid.RowSpan="2" 
+               BackgroundColor="{DynamicResource Primary}"/>
+        <Frame CornerRadius="100" 
+               HorizontalOptions="Center" 
+               Padding="0" 
+               IsClippedToBounds="True" 
+               Grid.Column="2" 
+               Grid.Row="0" 
+               Grid.RowSpan="3" 
+               Grid.ColumnSpan="1" 
+               HeightRequest="250" 
+               WidthRequest="250">
+               
+            <Image Source="TopImage.png" 
+                   Aspect="Fill"/>
         </Frame>
         <Label Text="Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, 
                totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. 
                Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est"
-               Grid.Row="3" Grid.Column="0" Padding="30" Grid.ColumnSpan="5" Grid.RowSpan="3" FontSize="Medium"/>
-        <Button Text="ShareQR" Command="{Binding GoToShareQRCommand}" BackgroundColor="Red" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="5"/>
+               Grid.Row="3" 
+               Grid.Column="0" 
+               Padding="30" 
+               Grid.ColumnSpan="5" 
+               Grid.RowSpan="3" 
+               FontSize="Medium"/>
+        <Button Text="ShareQR" 
+                Command="{Binding GoToShareQRCommand}" 
+                BackgroundColor="Red" 
+                Grid.Column="0" 
+                Grid.Row="6" 
+                Grid.ColumnSpan="5"/>
     </Grid>
 </ContentPage>
