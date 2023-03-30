@@ -1,0 +1,34 @@
+[
+  {
+    "TripID": 1,
+    "Image": "image_top_background.png",
+    "Name": "Trip1",
+    "Description": "Placeholder",
+    "Time": "1h30min",
+    "IsCustom": false
+  },
+  {
+    "TripID": 2,
+    "Image": "image_top_background.png",
+    "Name": "Trip2",
+    "Description": "Placeholder",
+    "Time": "1h30min",
+    "IsCustom": false
+  },
+  {
+    "TripID": 3,
+    "Image": "image_top_background.png",
+    "Name": "Trip3",
+    "Description": "Placeholder",
+    "Time": "1h30min",
+    "IsCustom": false
+  },
+  {
+    "TripID": 4,
+    "Image": "image_top_background.png",
+    "Name": "Trip4",
+    "Description": "Placeholder",
+    "Time": "1h30min",
+    "IsCustom": false
+  }
+]

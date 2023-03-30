@@ -1,0 +1,57 @@
+[
+  {
+    "PartOfTripID": 1,
+    "TripID": 1,
+    "LocationID": 1
+  },
+  {
+    "PartOfTripID": 2,
+    "TripID": 1,
+    "LocationID": 2
+  },
+  {
+    "PartOfTripID": 3,
+    "TripID": 1,
+    "LocationID": 3
+  },
+  {
+    "PartOfTripID": 4,
+    "TripID": 1,
+    "LocationID": 4
+  },
+  {
+    "PartOfTripID": 5,
+    "TripID": 1,
+    "LocationID": 5
+  },
+  {
+    "PartOfTripID": 6,
+    "TripID": 2,
+    "LocationID": 6
+  },
+  {
+    "PartOfTripID": 7,
+    "TripID": 2,
+    "LocationID": 7
+  },
+  {
+    "PartOfTripID": 8,
+    "TripID": 2,
+    "LocationID": 8
+  },
+  {
+    "PartOfTripID": 9,
+    "TripID": 3,
+    "LocationID": 9
+  },
+  {
+    "PartOfTripID": 10,
+    "TripID": 3,
+    "LocationID": 10
+  },
+  {
+    "PartOfTripID": 11,
+    "TripID": 3,
+    "LocationID": 11
+  }
+]
