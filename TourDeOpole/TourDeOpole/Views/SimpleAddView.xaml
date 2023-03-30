@@ -2,12 +2,36 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TourDeOpole.Views.SimpleAddView"
-             Title="SimpleAddView">
+             Shell.NavBarHasShadow="False"
+             Title="Dodaj nowa lokalizacje">
+
+
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to SimpleAddView!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+
+
+        <Grid RowDefinitions="75,75,100,*,50" ColumnDefinitions="*,50,50,50,*"  BackgroundColor="#edf2fa">
+            <Frame Grid.ColumnSpan="5" BackgroundColor="#94a5c1 "/>
+            <Frame CornerRadius="100" HorizontalOptions="Center" IsClippedToBounds="True" Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Grid.ColumnSpan="3" HeightRequest="150" WidthRequest="150" BorderColor="Black">
+                <Image Source="AddAPhoto.png" Margin="20"/>
+            </Frame>
+            <ImageButton Grid.Row="1" Grid.Column="3" Source="AddButton.png" HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="Transparent" Margin="10,20,0,0"/>
+            <Button Style="{StaticResource ImportantButton}" 
+                    Text="Dodaj" 
+                    BackgroundColor="{DynamicResource ButtonColor}"
+                    Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" Margin="10,0,30,10"/>
+            <Button Style="{StaticResource ImportantButton}" 
+                    Text="Wróć" 
+                    BackgroundColor="{DynamicResource ButtonColor}"
+                    Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="3" Margin="30,0,10,10"/>
+            <Frame  Grid.Row="2"  Grid.ColumnSpan="5" Margin="50,20,50,0" CornerRadius="10" BorderColor="Black">
+
+                <Entry Placeholder="Nazwa" PlaceholderColor="Gray"/>
+            </Frame>
+            <Frame  Grid.Row="3"  Grid.ColumnSpan="5" Margin="50,20,50,20" CornerRadius="10" BorderColor="Black">
+
+                <Editor Placeholder="Opis" PlaceholderColor="Gray"/>
+            </Frame>
+        </Grid>
+
     </ContentPage.Content>
 </ContentPage>
