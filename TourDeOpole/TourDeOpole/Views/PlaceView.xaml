@@ -1,33 +1,15 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             xmlns:viewmodels="clr-namespace:TourDeOpole.ViewModels"
+             xmlns:viewmodels="clr-namespace:TourDeOpole.ViewModels" 
              x:DataType="viewmodels:PlaceViewModel"
              x:Class="TourDeOpole.Views.PlaceView"
-             Shell.NavBarIsVisible="False"
              Title="PlaceView">
-
-    <Grid RowDefinitions="100,25,50,*,50,50" ColumnDefinitions="*,*,*,*,*"  BackgroundColor="{DynamicResource Primary}">
-
-        <Frame Grid.ColumnSpan="5" Grid.RowSpan="2" BackgroundColor="{DynamicResource Secondary}"/>
-        <Image Source="Back.png" Grid.Column="0" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Start"/>
-        <Image Source="Share.png" Grid.Column="4" Grid.Row="1" HorizontalOptions="Center"/>
-
-        <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" HorizontalOptions="Center" Text="Jakies znane miejsce" TextColor="White" FontSize="Large"/>
-
-        <Frame CornerRadius="100" HorizontalOptions="Center" Padding="0" IsClippedToBounds="True" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" Grid.ColumnSpan="3">
-            <Image Source="TopImage.png" 
-           HorizontalOptions="Center"
-           VerticalOptions="Center">
-
-            </Image>
-        </Frame>
-        <Label Text="Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est"
-               Grid.Row="3" Grid.Column="0" Padding="30" Grid.ColumnSpan="5" Grid.RowSpan="3" FontSize="Medium"/>
-
-        <Button Text="GOTODETAILS"  Command="{Binding GoToDetailsCommand}" BackgroundColor="Red" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="5"/>
-        <Button Text="GOTOADD"  Command="{Binding GoToAddCommand}" BackgroundColor="Red" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="5"/>
-
-
-    </Grid>
+    <StackLayout>
+        <Label Text="Welcome to PlaceView"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+        <Button Text="GOTODETAILS"  Command="{Binding GoToDetailsCommand}" BackgroundColor="Red"/>
+        <Button Text="GOTOADD"  Command="{Binding GoToAddCommand}" BackgroundColor="Red"/>
+    </StackLayout>
 </ContentPage>
