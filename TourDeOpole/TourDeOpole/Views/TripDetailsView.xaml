@@ -3,13 +3,36 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:viewmodels="clr-namespace:TourDeOpole.ViewModels" x:DataType="viewmodels:TripDetailsViewModel"
              x:Class="TourDeOpole.Views.TripDetailsView"
+             Shell.NavBarIsVisible="False"
              Title="TripDetailsView">
+
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to TripDetailsView!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-            <Button Text="ShareQR" Command="{Binding GoToShareQRCommand}" BackgroundColor="Red"/>
-        </StackLayout>
+
+
+        <Grid RowDefinitions="50,75,*,*,*,50" ColumnDefinitions="*,*,*,*,*"  BackgroundColor="#edf2fa">
+            <Frame Grid.ColumnSpan="5" Grid.RowSpan="2" BackgroundColor="#94a5c1 "/>
+            <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" HorizontalOptions="Center" Text="Jakas fajna trasa" TextColor="White" FontSize="Large" VerticalOptions="Center"/>
+            <Label Text="Czas trwania: 1 godzina 30 minut" FontSize="Small" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" TextColor="White" />
+            <Image Source="Back.png" Grid.Column="0" Grid.Row="0" HorizontalOptions="StartAndExpand" VerticalOptions="End"/>
+            <Image Source="Share.png" Grid.Column="4" Grid.Row="0" HorizontalOptions="EndAndExpand" VerticalOptions="End"/>
+            <Image Source="Map.png" Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="2" Grid.RowSpan="2" Margin="15"/>
+
+
+
+            <ScrollView Grid.Row="4" Grid.Column="0" Padding="30" Grid.ColumnSpan="5" Grid.RowSpan="2">
+                <Label Text="Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, 
+               totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, 
+               totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo." FontSize="Medium"/>
+            </ScrollView>
+            <Button Text="ShareQR" Command="{Binding GoToShareQRCommand}" BackgroundColor="Red" Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="5"/>
+        </Grid>
+
     </ContentPage.Content>
 </ContentPage>
+
+
+
+
+
+
+
