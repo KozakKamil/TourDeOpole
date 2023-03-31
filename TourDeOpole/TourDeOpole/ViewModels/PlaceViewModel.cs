@@ -18,25 +18,58 @@ namespace TourDeOpole.ViewModels
         public Command GoToScanQRCommand { get; set; }
 
         public ObservableCollection<Place> myPlace { get; set; }
+        public ObservableCollection<Category> Category { get; set; }
+
         public PlaceViewModel()
         {
-
             GoToDetailsCommand = new Command(GoToDetails);
             GoToAddCommand = new Command(GoToAddPlace);
             GoToScanQRCommand = new Command(GoToScanQR);
+            Category = new ObservableCollection<Category>();
+            myPlace = new ObservableCollection<Place>();
 
-            myPlace = new ObservableCollection<Place>()
-        {
-            new Place {Image = "TopImage.jpg", Name = "Place 1", Description = "xdxdxd, xdx x xd xdxddd xdxdxd xdx xdxdxd xdx xdx xdxdxd xddddd xdxdxd xdxdxd xdxdxd" },
-            new Place {Image = "TopImage.jpg", Name = "Place 2", Description = "xdxdxd, xdx x xd xdxddd xdxdxd xdx xdxdxd xdx xdx xdxdxd xddddd xdxdxd xdxdxd xdxdxd" },
-            new Place {Image = "TopImage.jpg", Name = "Place 2", Description = "xdxdxd, xdx x xd xdxddd xdxdxd xdx xdxdxd xdx xdx xdxdxd xddddd xdxdxd xdxdxd xdxdxd" },
-            new Place {Image = "TopImage.jpg", Name = "Place 2", Description = "xdxdxd, xdx x xd xdxddd xdxdxd xdx xdxdxd xdx xdx xdxdxd xddddd xdxdxd xdxdxd xdxdxd" },
-            new Place {Image = "TopImage.jpg", Name = "Place 2", Description = "xdxdxd, xdx x xd xdxddd xdxdxd xdx xdxdxd xdx xdx xdxdxd xddddd xdxdxd xdxdxd xdxdxd" },
-            new Place {Image = "TopImage.jpg", Name = "Place 2", Description = "xdxdxd, xdx x xd xdxddd xdxdxd xdx xdxdxd xdx xdx xdxdxd xddddd xdxdxd xdxdxd xdxdxd" },
-            new Place {Image = "TopImage.jpg", Name = "Place 2", Description = "xdxdxd, xdx x xd xdxddd xdxdxd xdx xdxdxd xdx xdx xdxdxd xddddd xdxdxd xdxdxd xdxdxd" },
-            new Place {Image = "TopImage.jpg", Name = "Place 3", Description = "xdxdxd, xdx x xd xdxddd xdxdxd xdx xdxdxd xdx xdx xdxdxd xddddd xdxdxd xdxdxd xdxdxd" }
-        };
+            LoadCategory();
+            LoadPlace();
         }
+
+        private async void LoadPlace()
+        {
+            var places = App.Database.GetPlaceAsync().Result;
+            var databaseEmpty = false;
+            if (places == null || places.Count == 0)
+            {
+                places = await URLService.GetPlaces();
+                databaseEmpty = true;
+            }
+
+            foreach (var place in places)
+            {
+                myPlace.Add(place);
+                if (databaseEmpty)
+                    await App.Database.SavePlaceAsync(place);
+            }
+            databaseEmpty = false;
+        }
+
+        private async void LoadCategory()
+        {
+            var categories = App.Database.GetCategoryeAsync().Result;
+            var databaseEmpty = false;
+            if (categories == null || categories.Count == 0)
+            {
+                databaseEmpty = true;
+                categories = await URLService.GetCategory();
+            }
+
+            foreach (var catgory in categories)
+            {
+                Category.Add(catgory);
+                if (databaseEmpty)
+                    await App.Database.SaveCategoryAsync(catgory);
+            }
+            databaseEmpty = false;
+        }
+
         private async void GoToScanQR()
         {
             await NavigationService.GoToScanQR();
@@ -61,7 +94,7 @@ namespace TourDeOpole.ViewModels
             }
             catch (PermissionException pEx)
             {
-                if(pEx != null)
+                if (pEx != null)
                 {
                     Alert.DisplayAlert("Wystąpił błąd", "Niestety nie mamy uprawnień do pobrania Twojej lokalizacji", "Dobrze");
                 }
@@ -85,7 +118,11 @@ namespace TourDeOpole.ViewModels
         }
         private async void GoToAddPlace()
         {
-            await NavigationService.GoToAdd();
+            //Temporary Adding
+            var p = new Place { Image = "TopImage.jpg", Name = "Place 1", Description = "xdxdxd, xdx x xd xdxddd xdxdxd xdx xdxdxd xdx xdx xdxdxd xddddd xdxdxd xdxdxd xdxdxd" };
+            myPlace.Add(p);
+            await App.Database.SavePlaceAsync(p);
+            //await NavigationService.GoToAdd();
         }
         #endregion
     }

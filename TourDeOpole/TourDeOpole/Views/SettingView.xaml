@@ -10,7 +10,6 @@
             <Label Text="Welcome to SettingView"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
-            <Button Command="{Binding GetPlacesCommand}" BackgroundColor="Red" Text="GetJSON"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

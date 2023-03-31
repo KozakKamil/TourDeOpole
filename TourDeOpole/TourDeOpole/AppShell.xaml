@@ -8,8 +8,8 @@
 
     <!--Tworzy tabbar czyli dolne menu-->
     <TabBar>
-        <ShellContent Title="Lokalizacja" Icon="icon_localization.svg" ContentTemplate="{DataTemplate view:PlaceView}" />
-        <ShellContent Title="Home" Icon="icon_home.svg" ContentTemplate="{DataTemplate view:TripView}" />
+        <ShellContent Title="Home" Icon="icon_home.svg" ContentTemplate="{DataTemplate view:PlaceView}" />
+        <ShellContent Title="Wycieczki" Icon="icon_localization.svg" ContentTemplate="{DataTemplate view:TripView}" />
         <ShellContent Title="Ustawienia" Icon="icon_cog.svg" ContentTemplate="{DataTemplate view:SettingView}" />
     </TabBar>
 
