@@ -3,13 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TourDeOpole.Views.SimpleAddView"
              Shell.NavBarHasShadow="False"
-             Title="Dodaj nowa lokalizacje">
+             Title="Dodaj nowa lokalizacje"
+             Shell.TabBarIsVisible="False">
 
     <ContentPage.Content>
 
         <Grid RowDefinitions="75,75,100,*,50" 
               ColumnDefinitions="*,50,50,50,*"
-              BackgroundColor="#edf2fa">
+              BackgroundColor="{StaticResource Background}">
             <Frame Grid.ColumnSpan="5"
                    BackgroundColor="#94a5c1 "/>
             <Frame CornerRadius="100" 
@@ -48,19 +49,19 @@
                     Margin="30,0,10,10"/>
             <Frame  Grid.Row="2"  
                     Grid.ColumnSpan="5" 
-                    Margin="50,20,50,0" 
-                    CornerRadius="10" 
+                    Margin="50,25,50,25" 
+                    CornerRadius="10"
+                    Padding="0"     
                     BorderColor="Black">
-                <Entry Placeholder="Nazwa" 
-                       PlaceholderColor="Gray"/>
+                <Entry Margin="10,0,0,0" Placeholder="Nazwa"/>
             </Frame>
             <Frame  Grid.Row="3"
                     Grid.ColumnSpan="5"
                     Margin="50,20,50,20"
-                    CornerRadius="10"
-                    BorderColor="Black">
-                <Editor Placeholder="Opis"
-                        PlaceholderColor="Gray"/>
+                    CornerRadius="10"    
+                    BorderColor="Black"
+                    Padding="0">
+                <Entry Margin="10,0,0,0" VerticalTextAlignment="Start" HorizontalTextAlignment="Start" Placeholder="Opis"/>
             </Frame>
         </Grid>
     </ContentPage.Content>
