@@ -119,10 +119,10 @@ namespace TourDeOpole.ViewModels
         private async void GoToAddPlace()
         {
             //Temporary Adding
-            var p = new Place { Image = "TopImage.jpg", Name = "Place 1", Description = "xdxdxd, xdx x xd xdxddd xdxdxd xdx xdxdxd xdx xdx xdxdxd xddddd xdxdxd xdxdxd xdxdxd" };
-            myPlace.Add(p);
-            await App.Database.SavePlaceAsync(p);
-            //await NavigationService.GoToAdd();
+            //var p = new Place { Image = "TopImage.jpg", Name = "Place 1", Description = "xdxdxd, xdx x xd xdxddd xdxdxd xdx xdxdxd xdx xdx xdxdxd xddddd xdxdxd xdxdxd xdxdxd" };
+            //myPlace.Add(p);
+            //await App.Database.SavePlaceAsync(p);
+            await NavigationService.GoToAdd();
         }
         #endregion
     }
