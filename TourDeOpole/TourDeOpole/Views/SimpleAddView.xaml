@@ -8,56 +8,56 @@
 
     <ContentPage.Content>
 
-        <Grid RowDefinitions="75,75,100,*,50,70" 
-              ColumnDefinitions="40,*,40"
-              BackgroundColor="White">
-            <Frame Grid.ColumnSpan="3"
-                   Grid.Column="0"
-                   Grid.Row="0"
-                   BackgroundColor="{DynamicResource Primary} "/>
-            <Frame CornerRadius="90" 
-                   HorizontalOptions="Center"
-                   VerticalOptions="Center"
+        <Grid RowDefinitions="75,75,100,*,50" 
+              ColumnDefinitions="*,50,50,50,*"
+              BackgroundColor="{StaticResource Background}">
+            <Frame Grid.ColumnSpan="5"
+                   BackgroundColor="#94a5c1 "/>
+            <Frame CornerRadius="100" 
+                   HorizontalOptions="Center" 
                    IsClippedToBounds="True" 
-                   Grid.Column="1"
-                   Grid.Row="0"
-                   Grid.RowSpan="2"
-                   HeightRequest="100" 
-                   WidthRequest="100" 
+                   Grid.Column="1" 
+                   Grid.Row="0" 
+                   Grid.RowSpan="2" 
+                   Grid.ColumnSpan="3" 
+                   HeightRequest="150" 
+                   WidthRequest="150" 
                    BorderColor="Black">
                 <Image Source="AddAPhoto.png" 
-                       Margin="10"/>
+                       Margin="20"/>
             </Frame>
             <ImageButton Grid.Row="1" 
-                         Grid.Column="1" 
+                         Grid.Column="3" 
                          Source="AddButton.png" 
                          HorizontalOptions="Center" 
                          VerticalOptions="Center" 
                          BackgroundColor="Transparent" 
-                         Margin="60,40,0,0"/>
-            <StackLayout Orientation="Horizontal" Grid.Row="4" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center">
-                <Button Style="{StaticResource ImportantButton}" 
-                    Text="Dodaj"
-                    WidthRequest="150"
-                    BackgroundColor="{DynamicResource ButtonColor}" 
-                    Margin="0"/>
-                <Button Style="{StaticResource ImportantButton}" 
-                    Text="Wróć"
-                    WidthRequest="150"
+                         Margin="10,20,0,0"/>
+            <Button Style="{StaticResource ImportantButton}" 
+                    Text="Dodaj" 
                     BackgroundColor="{DynamicResource ButtonColor}"
-                    Margin="0"/>
-            </StackLayout>
+                    Grid.Row="4" 
+                    Grid.Column="0" 
+                    Grid.ColumnSpan="3" 
+                    Margin="10,0,30,10"/>
+            <Button Style="{StaticResource ImportantButton}" 
+                    Text="Wróć" 
+                    BackgroundColor="{DynamicResource ButtonColor}"
+                    Grid.Row="4" 
+                    Grid.Column="2" 
+                    Grid.ColumnSpan="3" 
+                    Margin="30,0,10,10"/>
             <Frame  Grid.Row="2"  
-                    Grid.Column="1" 
-                    Margin="0,20,0,30" 
+                    Grid.ColumnSpan="5" 
+                    Margin="50,25,50,25" 
                     CornerRadius="10"
                     Padding="0"     
                     BorderColor="Black">
                 <Entry Margin="10,0,0,0" Placeholder="Nazwa"/>
             </Frame>
             <Frame  Grid.Row="3"
-                    Grid.Column="1"
-                    Margin="0,0,0,30"
+                    Grid.ColumnSpan="5"
+                    Margin="50,20,50,20"
                     CornerRadius="10"    
                     BorderColor="Black"
                     Padding="0">
