@@ -1,14 +1,46 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:viewmodels="clr-namespace:TourDeOpole.ViewModels"
+             x:DataType="viewmodels:PlaceDetailsViewModel"
              x:Class="TourDeOpole.Views.PlaceDetailsView"
-             Title="PlaceDetailsView">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to PlaceDetailsView!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-            <Button Text="ShareQR" Command="{Binding GoToShareQRCommand}" BackgroundColor="Red"/>
-        </StackLayout>
-    </ContentPage.Content>
+             Shell.NavBarHasShadow="False"
+             Shell.TabBarIsVisible="False"
+             Title="Jakies znane miejsce">
+    
+    <Grid RowDefinitions="25,25,90,*,50" 
+          ColumnDefinitions="*,*,150,*,*"
+          BackgroundColor="{DynamicResource Background}">
+        <Frame Grid.ColumnSpan="5" 
+               Grid.RowSpan="2" 
+               BackgroundColor="{DynamicResource Primary}"/>
+        <Frame CornerRadius="80" 
+               HorizontalOptions="Center" 
+               Padding="0" 
+               IsClippedToBounds="True" 
+               Grid.Column="2" 
+               Grid.Row="0" 
+               Grid.RowSpan="3" 
+               Grid.ColumnSpan="1" 
+               HeightRequest="200" 
+               WidthRequest="200">
+               
+            <Image Source="TopImage.png" 
+                   Aspect="AspectFill"/>
+        </Frame>
+        <Label Text="Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, 
+               totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. 
+               Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est"
+               Grid.Row="3" 
+               Grid.Column="0" 
+               Padding="30,30,30,0" 
+               Grid.ColumnSpan="5"
+               FontSize="Medium"/>
+        <Button Text="ShareQR" 
+                Command="{Binding GoToShareQRCommand}" 
+                BackgroundColor="Red" 
+                Grid.Column="0" 
+                Grid.Row="4"
+                Grid.ColumnSpan="5"/>
+    </Grid>
 </ContentPage>
