@@ -14,9 +14,9 @@ namespace TourDeOpole.Models
         [Ignore]
         public Category Category { get; set; }
 
-        public int LocationID { get; set; }
+        public int PlaceID { get; set; }
         [Ignore]
-        public Place Location { get; set; }
+        public Place Place { get; set; }
 
     }
 }
