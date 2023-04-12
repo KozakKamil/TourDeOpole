@@ -6,9 +6,9 @@ using Newtonsoft.Json;
 public class Place
 {
     public int PlaceID { get; set; }
-    public string Image { get; set; }
-    public string Name { get; set; }
-    public string Description { get; set; }
+    public string? Image { get; set; }
+    public string? Name { get; set; }
+    public string? Description { get; set; }
     public double Latitude { get; set; }
     public double Longitude { get; set; }
     public bool IsCustom { get; set; }
@@ -17,7 +17,7 @@ public class Place
 public class Category
 {
     public int CategoryID { get; set; }
-    public string Name { get; set; }
+    public string? Name { get; set; }
 }
 
 public class PartOfTrip
@@ -30,10 +30,10 @@ public class PartOfTrip
 public class Trip
 {
     public int TripID { get; set; }
-    public string Image { get; set; }
-    public string Name { get; set; }
-    public string Description { get; set; }
-    public string Time { get; set; }
+    public string? Image { get; set; }
+    public string? Name { get; set; }
+    public string? Description { get; set; }
+    public string? Time { get; set; }
     public bool IsCustom { get; set; }
 }
 
@@ -41,36 +41,40 @@ public class Trip
 
 public class Program
 {
-    public ObservableCollection<Place> myPlace { get; set; }
-    private ObservableCollection<Category> myCategory { get; set; }
-    private ObservableCollection<PartOfTrip> myPartOfTrip { get; set; }
-    private ObservableCollection<Trip> myTrip { get; set; }
+    public static ObservableCollection<Place>? myPlace { get; set; }
+    private static ObservableCollection<Category>? myCategory { get; set; }
+    private static ObservableCollection<PartOfTrip>? myPartOfTrip { get; set; }
+
+    private static readonly string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
+
     public static void Main(string[] args)
     {
-        var program = new Program();
-        var jsonPlaces = JsonConvert.SerializeObject(program.myPlace, Formatting.Indented);
-        var jsonCategory = JsonConvert.SerializeObject(program.myCategory, Formatting.Indented);
-        var jsonTrip = JsonConvert.SerializeObject(program.myTrip, Formatting.Indented);
-        var jsonPartOfTrip = JsonConvert.SerializeObject(program.myPartOfTrip, Formatting.Indented);
+        Console.WriteLine("What JSON file do you want to generate?");
+        Console.WriteLine("1. Generata places");
+        Console.WriteLine("2. Generata categories");
+        Console.WriteLine("3. Generata trips");
+        Console.WriteLine("4. Generata categories");
+        var result = Console.ReadLine();
+        switch (result)
+        {
+            case "1":
+                InitializePlaces(); break;
+                case "2":
+                    InitializeCategories(); break;
+                case "3":
+                    InitializeTrips(); break;
+                case "4":
+                    InitializePartsOfTrips(); break;
 
-        var desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
-
-        var filePathPlaces = Path.Combine(desktopPath, "jsonPlace.json");
-        var filePathCategory = Path.Combine(desktopPath, "jsonCategory.json");
-        var filePathTrip = Path.Combine(desktopPath, "jsonTrip.json");
-        var filePathPartOfTrip = Path.Combine(desktopPath, "jsonPartOfTrip.json");
-
-        File.WriteAllText(filePathPlaces, jsonPlaces);
-        File.WriteAllText(filePathCategory, jsonCategory);
-        File.WriteAllText(filePathTrip, jsonTrip);
-        File.WriteAllText(filePathPartOfTrip, jsonPartOfTrip);
+            default:
+                Console.WriteLine("Niepoprawna wartość!");
+                break;
+        }
     }
 
-
-    public Program()
+    private static void InitializePlaces()
     {
-
-        myPlace = new ObservableCollection<Place>()
+        var myPlace = new ObservableCollection<Place>()
             {
                 new Place {PlaceID = 1, Image = "image_top_background.png", Name = "Name", Description="Placeholder",Latitude=53.1980172,Longitude=18.3698428, IsCustom=false },
                 new Place {PlaceID = 2, Image = "image_top_background.png", Name = "Name", Description="Placeholder",Latitude=53.1980172,Longitude=18.3698428, IsCustom=false },
@@ -88,8 +92,14 @@ public class Program
                 new Place {PlaceID = 14, Image = "image_top_background.png", Name = "Name", Description="Placeholder",Latitude=53.1980172,Longitude=18.3698428, IsCustom=false },
                 new Place {PlaceID = 15, Image = "image_top_background.png", Name = "Name", Description="Placeholder",Latitude=53.1980172,Longitude=18.3698428, IsCustom=false },
             };
+        var jsonPlaces = JsonConvert.SerializeObject(myPlace, Formatting.Indented);
+        var filePathPlaces = Path.Combine(desktopPath, "jsonPlace.json");
+        File.WriteAllText(filePathPlaces, jsonPlaces);
+    }
 
-        myCategory = new ObservableCollection<Category>()
+    private static void InitializeCategories()
+    {
+        var myCategory = new ObservableCollection<Category>()
         {
             new Category{CategoryID = 1, Name = "Muzea"},
             new Category{CategoryID = 2, Name = "Restauracje"},
@@ -100,14 +110,35 @@ public class Program
             new Category{CategoryID = 7, Name = "Budynki historyczne"},
             new Category{CategoryID = 8, Name = "Miejsca historyczne"},
         };
-        myTrip = new ObservableCollection<Trip>()
+
+        var jsonCategory = JsonConvert.SerializeObject(myCategory, Formatting.Indented);
+        var filePathCategory = Path.Combine(desktopPath, "jsonCategory.json");
+        File.WriteAllText(filePathCategory, jsonCategory);
+
+
+
+    }
+
+    private static void InitializeTrips()
+    {
+        var myTrip = new ObservableCollection<Trip>()
         {
             new Trip { TripID = 1, Image="image_top_background.png", Name="Trip1", Time="1h30min", Description="Placeholder",IsCustom=false},
             new Trip { TripID = 2, Image="image_top_background.png", Name="Trip2", Time="1h30min", Description="Placeholder",IsCustom=false},
             new Trip { TripID = 3, Image="image_top_background.png", Name="Trip3", Time="1h30min", Description="Placeholder",IsCustom=false},
             new Trip { TripID = 4, Image="image_top_background.png", Name="Trip4", Time="1h30min", Description="Placeholder",IsCustom=false}
         };
-        myPartOfTrip = new ObservableCollection<PartOfTrip>()
+        var jsonTrip = JsonConvert.SerializeObject(myTrip, Formatting.Indented);
+        var filePathTrip = Path.Combine(desktopPath, "jsonTrip.json");
+        File.WriteAllText(filePathTrip, jsonTrip);
+
+
+
+    }
+
+    private static void InitializePartsOfTrips()
+    {
+        var myPartOfTrip = new ObservableCollection<PartOfTrip>()
         {
             new PartOfTrip {PartOfTripID=1, LocationID=1,TripID=1},
             new PartOfTrip {PartOfTripID=2, LocationID=2,TripID=1},
@@ -121,5 +152,8 @@ public class Program
             new PartOfTrip {PartOfTripID=10, LocationID=10,TripID=3},
             new PartOfTrip {PartOfTripID=11, LocationID=11,TripID=3},
         };
+        var jsonPartOfTrip = JsonConvert.SerializeObject(myPartOfTrip, Formatting.Indented);
+        var filePathPartOfTrip = Path.Combine(desktopPath, "jsonPartOfTrip.json");
+        File.WriteAllText(filePathPartOfTrip, jsonPartOfTrip);
     }
 }
