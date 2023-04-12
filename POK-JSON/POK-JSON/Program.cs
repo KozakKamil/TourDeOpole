@@ -50,10 +50,10 @@ public class Program
     public static void Main(string[] args)
     {
         Console.WriteLine("What JSON file do you want to generate?");
-        Console.WriteLine("1. Generata places");
-        Console.WriteLine("2. Generata categories");
-        Console.WriteLine("3. Generata trips");
-        Console.WriteLine("4. Generata categories");
+        Console.WriteLine("1. Generate places");
+        Console.WriteLine("2. Generate categories");
+        Console.WriteLine("3. Generate trips");
+        Console.WriteLine("4. Generate categories");
         var result = Console.ReadLine();
         switch (result)
         {
