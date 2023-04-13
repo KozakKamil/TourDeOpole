@@ -19,7 +19,7 @@
 
         <Grid Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="2">
             <Frame  Margin="10,0,10,0" Padding="0" CornerRadius="10">
-                <Entry Placeholder="" BackgroundColor="White" Margin="30,0,0,0"/>
+                <Entry Placeholder="" BackgroundColor="White" Margin="30,0,0,0" Text="{Binding SearchBarText,Mode=TwoWay}"/>
             </Frame>
             <Image HorizontalOptions="Start" HeightRequest="100"  Margin="20,0,0,0" Source="Search.png"/>
         </Grid>
