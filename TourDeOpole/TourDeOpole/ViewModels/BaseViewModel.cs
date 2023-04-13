@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
+using TourDeOpole.Models;
 using Xamarin.Forms;
 
 namespace TourDeOpole.ViewModels
@@ -23,6 +25,9 @@ namespace TourDeOpole.ViewModels
             get { return title; }
             set { SetProperty(ref title, value); }
         }
+
+        public ObservableCollection<Trip> ListOfTrips { get; set; }
+
 
         protected bool SetProperty<T>(ref T backingStore, T value,
             [CallerMemberName] string propertyName = "",
