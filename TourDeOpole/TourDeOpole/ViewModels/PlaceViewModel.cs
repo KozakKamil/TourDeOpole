@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Threading;
 using TourDeOpole.Models;
 using TourDeOpole.Services;
@@ -19,7 +21,6 @@ namespace TourDeOpole.ViewModels
 
         public ObservableCollection<Place> myPlace { get; set; }
         public ObservableCollection<Category> Category { get; set; }
-
         public PlaceViewModel()
         {
             GoToDetailsCommand = new Command(GoToDetails);
@@ -77,6 +78,8 @@ namespace TourDeOpole.ViewModels
 
 
         #region GetLocation
+        public string myLocCity { get; set; }
+        public string myLocAdress { get; set; }
         public async void getLocation()
         {
             try
@@ -84,9 +87,21 @@ namespace TourDeOpole.ViewModels
                 var request = new GeolocationRequest(GeolocationAccuracy.High, TimeSpan.FromSeconds(10));
                 var cts = new CancellationTokenSource();
                 var mylocation = await Geolocation.GetLocationAsync(request, cts.Token);
-                var location = new Location(50.664286, 17.936186);
+                var location = new Location(50.664286, 17.936186);//do remove
                 if (location != null)
                 {
+                    var placemarks = await Geocoding.GetPlacemarksAsync(location.Latitude, location.Longitude);
+                    var placemark = placemarks?.FirstOrDefault();
+
+                    var geocodeAddress =
+                 $"{placemark.Thoroughfare} " +
+                 $" {placemark.SubThoroughfare}";
+           
+                 myLocAdress =geocodeAddress;
+                    myLocCity = $"{placemark.Locality}";
+
+                    OnPropertyChanged(nameof(myLocAdress));
+                    OnPropertyChanged(nameof(myLocCity));
                     //DisplayAlert("Tytuł", $"Latitude: {location.Latitude}, Longitude: {location.Longitude}, Altitude: {location.Altitude}", "OK");
                 }
 
