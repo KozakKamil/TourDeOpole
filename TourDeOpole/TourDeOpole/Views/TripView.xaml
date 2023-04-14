@@ -26,7 +26,7 @@
 
 
 
-        <CollectionView ItemsSource="{Binding myTrip}" Grid.Row="3" Grid.ColumnSpan="4" Margin="20,30,20,0">
+        <CollectionView ItemsSource="{Binding ListOfTrips}" Grid.Row="3" Grid.ColumnSpan="4" Margin="20,30,20,0">
             <CollectionView.ItemsLayout>
                 <GridItemsLayout Orientation="Vertical"  HorizontalItemSpacing="0" VerticalItemSpacing="15"
                          Span="2"/>

@@ -5,6 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Threading;
 using TourDeOpole.Models;
 using TourDeOpole.Services;
+using TourDeOpole.Views;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -23,7 +24,7 @@ namespace TourDeOpole.ViewModels
         public ObservableCollection<Category> Category { get; set; }
         public PlaceViewModel()
         {
-            GoToDetailsCommand = new Command(GoToDetails);
+            GoToDetailsCommand = new Command<Place>(GoToDetails);
             GoToAddCommand = new Command(GoToAddPlace);
             GoToScanQRCommand = new Command(GoToScanQR);
             Category = new ObservableCollection<Category>();
@@ -49,6 +50,7 @@ namespace TourDeOpole.ViewModels
                 if (databaseEmpty)
                     await App.Database.SavePlaceAsync(place);
             }
+            Place.ListOfPlaces = myPlace;
             databaseEmpty = false;
         }
 
@@ -127,9 +129,9 @@ namespace TourDeOpole.ViewModels
         #endregion 
 
         #region Navigation
-        private async void GoToDetails()
+        private async void GoToDetails(Place place)
         {
-            await NavigationService.GoToPlaceDetails();
+            await Shell.Current.GoToAsync($"{nameof(PlaceDetailsView)}?{nameof(PlaceDetailsViewModel.PlaceID)}={place.PlaceID}");
         }
         private async void GoToAddPlace()
         {
