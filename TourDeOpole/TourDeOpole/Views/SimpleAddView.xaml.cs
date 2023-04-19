@@ -12,11 +12,11 @@ namespace TourDeOpole.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SimpleAddView : ContentPage
     {
-        private readonly SimpleAddViewModel viewModel;
+        private readonly PlaceDetailsViewModel viewModel;
         public SimpleAddView()
         {
             InitializeComponent();
-            viewModel= new SimpleAddViewModel();
+            viewModel= new PlaceDetailsViewModel();
             BindingContext= viewModel;
         }
 
