@@ -17,7 +17,7 @@ namespace TourDeOpole.ViewModels
         public Command GoToDetailsCommand { get; set; }
         public Command GoToAddCommand { get; set; }
         public Command GoToScanQRCommand { get; set; }
-        public Command Favorite { get; set; }
+        public Command ToggleFavoriteCommand { get; set; }
 
         public ObservableCollection<Place> myPlace { get; set; }
         public ObservableCollection<Category> Category { get; set; }
@@ -27,6 +27,7 @@ namespace TourDeOpole.ViewModels
             GoToDetailsCommand = new Command(GoToDetails);
             GoToAddCommand = new Command(GoToAddPlace);
             GoToScanQRCommand = new Command(GoToScanQR);
+            ToggleFavoriteCommand = new Command(FavoritePlace);
             Category = new ObservableCollection<Category>();
             myPlace = new ObservableCollection<Place>();
 
