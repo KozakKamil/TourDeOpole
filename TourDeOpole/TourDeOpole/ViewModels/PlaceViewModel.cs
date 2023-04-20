@@ -21,6 +21,16 @@ namespace TourDeOpole.ViewModels
         public Command GoToScanQRCommand { get; set; }
 
         public ObservableCollection<Place> myPlace { get; set; }
+
+
+        //added
+        public Command OnSearchTextChangedCommand { get; set; }
+        public ObservableCollection<Place> FilteredPlaces { get; set; }
+        public string SearchBarText { get; set; }
+
+
+
+
         public ObservableCollection<Category> Category { get; set; }
         public PlaceViewModel()
         {
@@ -29,6 +39,15 @@ namespace TourDeOpole.ViewModels
             GoToScanQRCommand = new Command(GoToScanQR);
             Category = new ObservableCollection<Category>();
             myPlace = new ObservableCollection<Place>();
+
+
+            //added
+            SearchBarText = string.Empty;
+            //FilteredPlaces = new ObservableCollection<Place>();
+            OnSearchTextChangedCommand = new Command(OnSearchTextChanged);
+
+
+
 
             LoadCategory();
             LoadPlace();
@@ -51,6 +70,12 @@ namespace TourDeOpole.ViewModels
                     await App.Database.SavePlaceAsync(place);
             }
             Place.ListOfPlaces = myPlace;
+
+
+            //added
+            FilteredPlaces = new ObservableCollection<Place>(myPlace);
+
+
             databaseEmpty = false;
         }
 
@@ -119,6 +144,31 @@ namespace TourDeOpole.ViewModels
             catch
             {
                 Alert.DisplayAlert("Wystąpił błąd", "Niestety nie udało się pobrać Twojej lokalizacji", "Dobrze");
+            }
+        }
+
+        //added
+        public void OnSearchTextChanged()
+        {
+            if (string.IsNullOrWhiteSpace(SearchBarText))
+            {
+                foreach (var place in myPlace)
+                {
+                        FilteredPlaces.Add(place);
+                }
+                //czemu to poprostu nie dziala????
+                //FilteredPlaces = myPlace;
+            }
+            else
+            {
+                FilteredPlaces.Clear();
+                foreach (var place in myPlace)
+                {
+                    if (place.Name.ToUpper().Contains(SearchBarText.ToUpper()))
+                    {
+                        FilteredPlaces.Add(place);
+                    }
+                }
             }
         }
 

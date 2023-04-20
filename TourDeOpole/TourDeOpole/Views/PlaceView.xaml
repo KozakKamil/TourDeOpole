@@ -22,8 +22,10 @@
 
         <Grid Grid.Column="1" Grid.Row="2">
             <Frame  Margin="10,0,10,0" Padding="0" CornerRadius="10">
-                <Entry Placeholder="" BackgroundColor="White" Margin="30,0,0,0"/>
+                <Entry Placeholder="" BackgroundColor="White" Margin="30,0,0,0" Text="{Binding SearchBarText,Mode=TwoWay}"/>
             </Frame>
+            <!--TEMP BUTTON         (there is nothing more permament than a temporary solution)--> 
+            <Button Grid.Column="1" Text="123" Command="{Binding OnSearchTextChangedCommand}"/>
             <Image HorizontalOptions="Start" HeightRequest="100"  Margin="20,0,0,0" Source="Search.png"/>
         </Grid>
        
@@ -40,7 +42,7 @@
             </CollectionView.ItemTemplate>
         </CollectionView>
 
-        <CollectionView ItemsSource="{Binding myPlace}" Grid.Row="4" Grid.Column="1" Margin="20,10">
+        <CollectionView ItemsSource="{Binding FilteredPlaces}" Grid.Row="4" Grid.Column="1" Margin="20,10">
             <CollectionView.ItemsLayout>
                 <GridItemsLayout Orientation="Vertical"  HorizontalItemSpacing="0" VerticalItemSpacing="15"/>
             </CollectionView.ItemsLayout>
