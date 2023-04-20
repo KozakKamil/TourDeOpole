@@ -52,14 +52,15 @@
                         <Frame CornerRadius="10">
                             <Grid ColumnDefinitions="*, 2*" Margin="-20">
                                 <Image Grid.Row="0" Grid.RowSpan="2" Grid.Column="0"  Source="{Binding Image}" Aspect="AspectFill" />
-
-                                <ImageButton Grid.Column="1" Source="favorite.png" BackgroundColor="White" Margin="150,10,10,0"/>
+                                
+                                <ImageButton Grid.Column="1" Source="favorite.png" BackgroundColor="White" Margin="150,10,10,0" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:PlaceViewModel}},Path=ToggleFavoriteCommand}"/>
                                 
                                 <StackLayout Grid.Column="1" Margin="10,10,0,0">
                                     <Label Text="{Binding Name}" FontAttributes="Bold"/>
                                     <Label Text="{Binding Description}"/>
                                 </StackLayout>
                             </Grid>
+
                         </Frame>
                     </Frame>
                 </DataTemplate>
