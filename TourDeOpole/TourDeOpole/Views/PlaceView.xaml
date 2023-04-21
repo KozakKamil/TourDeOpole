@@ -7,8 +7,10 @@
              x:Class="TourDeOpole.Views.PlaceView"
              Shell.NavBarIsVisible="False"
              Title="PlaceView">
-    <Grid RowDefinitions="120,50,50,40,auto" ColumnDefinitions="10,1*,10" BackgroundColor="{DynamicResource Background}">
+    <Grid RowDefinitions="120,50,50,40,auto" ColumnDefinitions="5,*,5" BackgroundColor="{DynamicResource Background}">
+        
         <Image Source="TopImage.png" Aspect="AspectFill" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0" />
+        
         <Grid Grid.Row="1" Grid.Column="1"  ColumnDefinitions="50,1*">
             <Image Source="Pin.png" HorizontalOptions="Start" Margin="10,0,0,0"/>
             <StackLayout Grid.Column="1">

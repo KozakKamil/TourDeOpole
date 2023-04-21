@@ -22,6 +22,11 @@ namespace TourDeOpole.Services
             Routing.RegisterRoute(nameof(AddTripView), typeof(AddTripView));
         }
 
+        public static async Task GoBack()
+        {
+            await Shell.Current.GoToAsync("..");
+        }
+
         public static async Task GoToTripDetails()
         {
             await Shell.Current.GoToAsync(nameof(TripDetailsView));

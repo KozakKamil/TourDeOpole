@@ -16,6 +16,7 @@ namespace TourDeOpole.ViewModels
 
     public partial class PlaceViewModel : BaseViewModel
     {
+
         public Command GoToDetailsCommand { get; set; }
         public Command GoToAddCommand { get; set; }
         public Command GoToScanQRCommand { get; set; }
@@ -31,11 +32,11 @@ namespace TourDeOpole.ViewModels
             myPlace = new ObservableCollection<Place>();
 
             LoadCategory();
-            LoadPlace();
         }
 
-        private async void LoadPlace()
+        public async void LoadPlace()
         {
+            myPlace.Clear();
             var places = App.Database.GetPlaceAsync().Result;
             var databaseEmpty = false;
             if (places == null || places.Count == 0)
@@ -73,73 +74,18 @@ namespace TourDeOpole.ViewModels
             databaseEmpty = false;
         }
 
+        #region Navigation
         private async void GoToScanQR()
         {
             await NavigationService.GoToScanQR();
         }
-
-
-        #region GetLocation
-        public string myLocCity { get; set; }
-        public string myLocAdress { get; set; }
-        public async void getLocation()
-        {
-            try
-            {
-                var request = new GeolocationRequest(GeolocationAccuracy.High, TimeSpan.FromSeconds(10));
-                var cts = new CancellationTokenSource();
-                var mylocation = await Geolocation.GetLocationAsync(request, cts.Token);
-                var location = new Location(50.664286, 17.936186);//do remove
-                if (location != null)
-                {
-                    var placemarks = await Geocoding.GetPlacemarksAsync(location.Latitude, location.Longitude);
-                    var placemark = placemarks?.FirstOrDefault();
-
-                    var geocodeAddress =
-                 $"{placemark.Thoroughfare} " +
-                 $" {placemark.SubThoroughfare}";
-           
-                 myLocAdress =geocodeAddress;
-                    myLocCity = $"{placemark.Locality}";
-
-                    OnPropertyChanged(nameof(myLocAdress));
-                    OnPropertyChanged(nameof(myLocCity));
-                    //DisplayAlert("Tytuł", $"Latitude: {location.Latitude}, Longitude: {location.Longitude}, Altitude: {location.Altitude}", "OK");
-                }
-
-                //DisplayAlert("Tytuł", $"Dystans {CalculateDistanceBetweenLocation(location, mylocation)}", "Super");
-            }
-            catch (PermissionException pEx)
-            {
-                if (pEx != null)
-                {
-                    Alert.DisplayAlert("Wystąpił błąd", "Niestety nie mamy uprawnień do pobrania Twojej lokalizacji", "Dobrze");
-                }
-            }
-            catch
-            {
-                Alert.DisplayAlert("Wystąpił błąd", "Niestety nie udało się pobrać Twojej lokalizacji", "Dobrze");
-            }
-        }
-
-        public double CalculateDistanceBetweenLocation(Location location, Location myLocation)
-        {
-            return Location.CalculateDistance(location, myLocation, DistanceUnits.Kilometers);
-        }
-        #endregion 
-
-        #region Navigation
         private async void GoToDetails(Place place)
         {
             await Shell.Current.GoToAsync($"{nameof(PlaceDetailsView)}?{nameof(PlaceDetailsViewModel.PlaceID)}={place.PlaceID}");
         }
         private async void GoToAddPlace()
         {
-            //Temporary Adding
-            var p = new Place { Image = "TopImage.jpg", Name = "Place 1", Description = "xdxdxd, xdx x xd xdxddd xdxdxd xdx xdxdxd xdx xdx xdxdxd xddddd xdxdxd xdxdxd xdxdxd" };
-            myPlace.Add(p);
-            await App.Database.SavePlaceAsync(p);
-            //await NavigationService.GoToAdd();
+            await NavigationService.GoToAdd();
         }
         #endregion
     }

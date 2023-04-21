@@ -15,15 +15,16 @@ namespace TourDeOpole.Views
     //tutaj tylko to co dotyczy UI 
     public partial class PlaceView : ContentPage
     {
-        PlaceViewModel _viewModel;
+        PlaceViewModel viewModel;
         public PlaceView()
         {
             InitializeComponent();
-            _viewModel = new PlaceViewModel();
-            BindingContext = _viewModel;
+            viewModel = new PlaceViewModel();
+            BindingContext = viewModel;
             Appearing += (sender, e) =>
             {
-                _viewModel.getLocation();
+                viewModel.GetLocation();
+                viewModel.LoadPlace();
             };
         }
         
