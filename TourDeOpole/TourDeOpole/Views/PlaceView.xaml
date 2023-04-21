@@ -22,7 +22,7 @@
 
         <Grid Grid.Column="1" Grid.Row="2">
             <Frame  Margin="10,0,10,0" Padding="0" CornerRadius="10">
-                <Entry Placeholder="" BackgroundColor="White" Margin="30,0,0,0" Text="{Binding SearchBarText,Mode=TwoWay}"/>
+                <Entry Placeholder="" BackgroundColor="White" Margin="30,0,0,0" Text="{Binding SearchBarText,Mode=TwoWay}" TextChanged="Entry_TextChanged"/>
             </Frame>
             <!--TEMP BUTTON         (there is nothing more permament than a temporary solution)--> 
             <Button Grid.Column="1" Text="123" Command="{Binding OnSearchTextChangedCommand}"/>

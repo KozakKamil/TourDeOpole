@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -98,6 +99,39 @@ namespace TourDeOpole.ViewModels
             databaseEmpty = false;
         }
 
+        //added
+        public void OnSearchTextChanged()
+        {
+            //FilteredPlaces.CopyTo(myPlace.ToArray(),0); ??
+
+
+
+
+
+
+
+
+            if (string.IsNullOrWhiteSpace(SearchBarText))
+            {
+                foreach (var place in myPlace)
+                {
+                    FilteredPlaces.Add(place);
+                }
+                //czemu to poprostu nie dziala????
+            }
+            else
+            {
+                FilteredPlaces.Clear();
+                foreach (var place in myPlace)
+                {
+                    if (place.Name.ToUpper().Contains(SearchBarText.ToUpper()))
+                    {
+                        FilteredPlaces.Add(place);
+                    }
+                }
+            }
+        }
+
         private async void GoToScanQR()
         {
             await NavigationService.GoToScanQR();
@@ -147,30 +181,7 @@ namespace TourDeOpole.ViewModels
             }
         }
 
-        //added
-        public void OnSearchTextChanged()
-        {
-            if (string.IsNullOrWhiteSpace(SearchBarText))
-            {
-                foreach (var place in myPlace)
-                {
-                        FilteredPlaces.Add(place);
-                }
-                //czemu to poprostu nie dziala????
-                //FilteredPlaces = myPlace;
-            }
-            else
-            {
-                FilteredPlaces.Clear();
-                foreach (var place in myPlace)
-                {
-                    if (place.Name.ToUpper().Contains(SearchBarText.ToUpper()))
-                    {
-                        FilteredPlaces.Add(place);
-                    }
-                }
-            }
-        }
+
 
         public double CalculateDistanceBetweenLocation(Location location, Location myLocation)
         {
