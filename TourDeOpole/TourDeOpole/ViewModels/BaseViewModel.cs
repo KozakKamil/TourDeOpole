@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
+using TourDeOpole.Models;
+using TourDeOpole.Services;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace TourDeOpole.ViewModels
@@ -24,6 +28,12 @@ namespace TourDeOpole.ViewModels
             set { SetProperty(ref title, value); }
         }
 
+        public string myLocCity { get; set; }
+        public string myLocAdress { get; set; }
+
+        public ObservableCollection<Trip> ListOfTrips { get; set; }
+
+
         protected bool SetProperty<T>(ref T backingStore, T value,
             [CallerMemberName] string propertyName = "",
             Action onChanged = null)
@@ -36,6 +46,38 @@ namespace TourDeOpole.ViewModels
             OnPropertyChanged(propertyName);
             return true;
         }
+
+        #region GetLocation
+
+        public async void GetLocation()
+        {
+            try
+            {
+                await LocationService.GetLocation();
+                var placemark = LocationService.Placemark;
+                if (placemark == null)
+                {
+                    return;
+                }
+                myLocAdress = $"{placemark.Thoroughfare}  {placemark.SubThoroughfare}"; ;
+                myLocCity = $"{placemark.Locality}";
+
+                OnPropertyChanged(nameof(myLocAdress));
+                OnPropertyChanged(nameof(myLocCity));
+            }
+            catch (PermissionException pEx)
+            {
+                if (pEx != null)
+                {
+                    Alert.DisplayAlert("Wystąpił błąd", "Niestety nie mamy uprawnień do pobrania Twojej lokalizacji", "Dobrze");
+                }
+            }
+            catch
+            {
+                Alert.DisplayAlert("Wystąpił błąd", "Niestety nie udało się pobrać Twojej lokalizacji", "Dobrze");
+            }
+        }
+        #endregion 
 
         #region INotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;

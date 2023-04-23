@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Text;
 using System.Threading.Tasks;
 using TourDeOpole.Models;
 using TourDeOpole.Repository;
 using TourDeOpole.Services;
+using TourDeOpole.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Shapes;
 
@@ -17,13 +19,12 @@ namespace TourDeOpole.ViewModels
         public Command GoToDetailsCommand { get; set; }
         public Command GoToAddCommand { get; set; }
         public Command GoToScanQRCommand { get; set; }
-        public ObservableCollection<Trip> myTrip { get; set; }
         public TripViewModel()
         {
-            GoToDetailsCommand = new Command(GoToDetails);
+            GoToDetailsCommand = new Command<Trip>(GoToDetails);
             GoToAddCommand = new Command(GoToAddTrip);
             GoToScanQRCommand = new Command(GoToScanQR);
-            myTrip = new ObservableCollection<Trip>();
+            ListOfTrips = new ObservableCollection<Trip>();
             LoadTrips();
         }
 
@@ -39,17 +40,18 @@ namespace TourDeOpole.ViewModels
 
             foreach (var trip in trips)
             {
-                myTrip.Add(trip);
+                ListOfTrips.Add(trip);
                 if (databaseEmpty)
                     await App.Database.SaveTripAsync(trip);
             }
             databaseEmpty = false;
+            Trip.ListOfTrips = ListOfTrips;
         }
 
 
-        private async void GoToDetails()
+        private async void GoToDetails(Trip trip)
         {
-            await NavigationService.GoToTripDetails();
+            await Shell.Current.GoToAsync($"{nameof(TripDetailsView)}?{nameof(TripDetailsViewModel.TripID)}={trip.TripID}");
         }
         private async void GoToAddTrip()
         {

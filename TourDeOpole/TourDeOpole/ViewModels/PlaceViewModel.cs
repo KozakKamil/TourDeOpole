@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Threading;
 using TourDeOpole.Models;
 using TourDeOpole.Services;
+using TourDeOpole.Views;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -21,10 +24,9 @@ namespace TourDeOpole.ViewModels
 
         public ObservableCollection<Place> myPlace { get; set; }
         public ObservableCollection<Category> Category { get; set; }
-
         public PlaceViewModel()
         {
-            GoToDetailsCommand = new Command(GoToDetails);
+            GoToDetailsCommand = new Command<Place>(GoToDetails);
             GoToAddCommand = new Command(GoToAddPlace);
             GoToScanQRCommand = new Command(GoToScanQR);
             ToggleFavoriteCommand = new Command(FavoritePlace);
@@ -32,16 +34,16 @@ namespace TourDeOpole.ViewModels
             myPlace = new ObservableCollection<Place>();
 
             LoadCategory();
-            LoadPlace();
         }
 
         private void FavoritePlace()
         {
             throw new NotImplementedException();
         }
-
-        private async void LoadPlace()
+        
+        public async void LoadPlace()
         {
+            myPlace.Clear();
             var places = App.Database.GetPlaceAsync().Result;
             var databaseEmpty = false;
             if (places == null || places.Count == 0)
@@ -56,6 +58,7 @@ namespace TourDeOpole.ViewModels
                 if (databaseEmpty)
                     await App.Database.SavePlaceAsync(place);
             }
+            Place.ListOfPlaces = myPlace;
             databaseEmpty = false;
         }
 
@@ -78,59 +81,18 @@ namespace TourDeOpole.ViewModels
             databaseEmpty = false;
         }
 
+        #region Navigation
         private async void GoToScanQR()
         {
             await NavigationService.GoToScanQR();
         }
-
-
-        #region GetLocation
-        public async void getLocation()
+        private async void GoToDetails(Place place)
         {
-            try
-            {
-                var request = new GeolocationRequest(GeolocationAccuracy.High, TimeSpan.FromSeconds(10));
-                var cts = new CancellationTokenSource();
-                var mylocation = await Geolocation.GetLocationAsync(request, cts.Token);
-                var location = new Location(50.664286, 17.936186);
-                if (location != null)
-                {
-                    //DisplayAlert("Tytuł", $"Latitude: {location.Latitude}, Longitude: {location.Longitude}, Altitude: {location.Altitude}", "OK");
-                }
-
-                //DisplayAlert("Tytuł", $"Dystans {CalculateDistanceBetweenLocation(location, mylocation)}", "Super");
-            }
-            catch (PermissionException pEx)
-            {
-                if (pEx != null)
-                {
-                    Alert.DisplayAlert("Wystąpił błąd", "Niestety nie mamy uprawnień do pobrania Twojej lokalizacji", "Dobrze");
-                }
-            }
-            catch
-            {
-                Alert.DisplayAlert("Wystąpił błąd", "Niestety nie udało się pobrać Twojej lokalizacji", "Dobrze");
-            }
-        }
-
-        public double CalculateDistanceBetweenLocation(Location location, Location myLocation)
-        {
-            return Location.CalculateDistance(location, myLocation, DistanceUnits.Kilometers);
-        }
-        #endregion 
-
-        #region Navigation
-        private async void GoToDetails()
-        {
-            await NavigationService.GoToPlaceDetails();
+            await Shell.Current.GoToAsync($"{nameof(PlaceDetailsView)}?{nameof(PlaceDetailsViewModel.PlaceID)}={place.PlaceID}");
         }
         private async void GoToAddPlace()
         {
-            //Temporary Adding
-            var p = new Place { Image = "TopImage.jpg", Name = "Place 1", Description = "xdxdxd, xdx x xd xdxddd xdxdxd xdx xdxdxd xdx xdx xdxdxd xddddd xdxdxd xdxdxd xdxdxd" };
-            myPlace.Add(p);
-            await App.Database.SavePlaceAsync(p);
-            //await NavigationService.GoToAdd();
+            await NavigationService.GoToAdd();
         }
         #endregion
     }

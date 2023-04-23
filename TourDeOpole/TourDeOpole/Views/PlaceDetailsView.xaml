@@ -6,7 +6,7 @@
              x:Class="TourDeOpole.Views.PlaceDetailsView"
              Shell.NavBarHasShadow="False"
              Shell.TabBarIsVisible="False"
-             Title="Jakies znane miejsce">
+             Title="{Binding Name}">
     
     <Grid RowDefinitions="25,25,90,*,50" 
           ColumnDefinitions="*,*,150,*,*"
@@ -28,9 +28,7 @@
             <Image Source="TopImage.png" 
                    Aspect="AspectFill"/>
         </Frame>
-        <Label Text="Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, 
-               totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. 
-               Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est"
+        <Label Text="{Binding Description}"
                Grid.Row="3" 
                Grid.Column="0" 
                Padding="30,30,30,0" 

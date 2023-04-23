@@ -1,6 +1,7 @@
 ﻿using SQLite;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 
 namespace TourDeOpole.Models
@@ -15,5 +16,8 @@ namespace TourDeOpole.Models
         public string Description { get; set;}
         public string Time { get; set;}
         public bool IsCustom { get; set;}
+
+        [Ignore]
+        public static ObservableCollection<Trip> ListOfTrips { get;set; }
     }
 }

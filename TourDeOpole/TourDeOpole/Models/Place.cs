@@ -1,6 +1,7 @@
 ﻿using SQLite;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 using Xamarin.Forms;
 
@@ -16,5 +17,8 @@ namespace TourDeOpole.Models
         public double Latitude { get; set; }
         public double Longitude { get; set; }
         public bool IsCustom { get; set; }
+
+        [Ignore]
+        public static ObservableCollection<Place> ListOfPlaces { get; set; }
     }
 }
