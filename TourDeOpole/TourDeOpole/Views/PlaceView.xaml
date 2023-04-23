@@ -22,10 +22,10 @@
 
         <Grid Grid.Column="1" Grid.Row="2">
             <Frame  Margin="10,0,10,0" Padding="0" CornerRadius="10">
-                <Entry Placeholder="" BackgroundColor="White" Margin="30,0,0,0" Text="{Binding SearchBarText,Mode=TwoWay}" TextChanged="Entry_TextChanged"/>
+                <Entry Placeholder="" BackgroundColor="White" Margin="30,0,0,0" TextChanged="LocationSearchBarTextChanged"/>
+                <!--To chyba powienien byc seachbar zamiast <Entry> i on ma juz wbudowana 'lupe' to ten <Image> tez moze by w tedy wyrzucic-->
+                <!--<SearchBar BackgroundColor="White" TextChanged="LocationSearchBarTextChanged"/>-->
             </Frame>
-            <!--TEMP BUTTON         (there is nothing more permament than a temporary solution)--> 
-            <Button Grid.Column="1" Text="123" Command="{Binding OnSearchTextChangedCommand}"/>
             <Image HorizontalOptions="Start" HeightRequest="100"  Margin="20,0,0,0" Source="Search.png"/>
         </Grid>
        
