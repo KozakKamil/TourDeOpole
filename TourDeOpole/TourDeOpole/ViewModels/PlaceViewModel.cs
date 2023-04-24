@@ -14,12 +14,13 @@ namespace TourDeOpole.ViewModels
 {
     //tutaj wszystkie metody, zwykle komendy 
 
-    public partial class PlaceViewModel : BaseViewModel
+    public partial class PlaceViewModel : BaseViewModel 
     {
-
+        public string SearchBarText { get; set; }
         public Command GoToDetailsCommand { get; set; }
         public Command GoToAddCommand { get; set; }
         public Command GoToScanQRCommand { get; set; }
+        public Command ToggleFavoriteCommand { get; set; }
 
         public ObservableCollection<Place> myPlace { get; set; }
         public ObservableCollection<Category> Category { get; set; }
@@ -28,12 +29,18 @@ namespace TourDeOpole.ViewModels
             GoToDetailsCommand = new Command<Place>(GoToDetails);
             GoToAddCommand = new Command(GoToAddPlace);
             GoToScanQRCommand = new Command(GoToScanQR);
+            ToggleFavoriteCommand = new Command(FavoritePlace);
             Category = new ObservableCollection<Category>();
             myPlace = new ObservableCollection<Place>();
 
             LoadCategory();
         }
 
+        private void FavoritePlace()
+        {
+            throw new NotImplementedException();
+        }
+        
         public async void LoadPlace()
         {
             myPlace.Clear();
