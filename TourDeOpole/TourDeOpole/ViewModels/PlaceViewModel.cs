@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using TourDeOpole.Models;
@@ -81,9 +82,20 @@ namespace TourDeOpole.ViewModels
             databaseEmpty = false;
         }
 
-        public void OnSearchTextChanged(object sender, TextChangedEventArgs e)
+        public void OnSearchTextChanged(object sender, TextChangedEventArgs e, string searchParameter)
         {
+            PropertyInfo propertyInfo = typeof(Place).GetProperty(searchParameter);
             if (string.IsNullOrWhiteSpace(e.NewTextValue))
+            {
+                FilteredPlaces = new ObservableCollection<Place>(Place.ListOfPlaces);
+                OnPropertyChanged(nameof(FilteredPlaces));
+            }
+            else
+            {
+                FilteredPlaces = new ObservableCollection<Place>(Place.ListOfPlaces.Where(x => propertyInfo.GetValue(x, null).ToString().ToUpper().Contains(e.NewTextValue.ToUpper())));
+                OnPropertyChanged(nameof(FilteredPlaces));
+            }
+            /*if (string.IsNullOrWhiteSpace(e.NewTextValue))
             {
                 FilteredPlaces.Clear();
                 foreach (var place in myPlace)
@@ -101,7 +113,7 @@ namespace TourDeOpole.ViewModels
                         FilteredPlaces.Add(place);
                     }
                 }
-            }
+            }*/
         }
 
         private async void GoToScanQR()

@@ -29,7 +29,8 @@ namespace TourDeOpole.Views
 
         private void LocationSearchBarTextChanged(object sender, TextChangedEventArgs e)
         {
-            _viewModel.OnSearchTextChanged(sender ,e);
+            string searchParameter = "Name";
+            _viewModel.OnSearchTextChanged(sender ,e, searchParameter);
         }
     }
 }
