@@ -45,35 +45,7 @@ namespace TourDeOpole.Services
                 }
             }
         }
-        public static async Task<Image> GetImageByURL(string url)
-        {
-            try
-            {
-                using (var httpClient = new HttpClient())
-                {
-                    var response = await httpClient.GetAsync(url);
-                    if (response.IsSuccessStatusCode)
-                    {
-                        var stream = await response.Content.ReadAsStreamAsync();
-                        ImageSource.FromStream(() => stream);
-                        var image = new Image
-                        {
-                            Source = ImageSource.FromStream(() => stream)
-                        };
-                        return image;
-                    }
-                    else
-                    {
-                        throw new Exception("Failed to download image");
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex);
-                return null;
-            }
-        }
+        
     }
 }
 
