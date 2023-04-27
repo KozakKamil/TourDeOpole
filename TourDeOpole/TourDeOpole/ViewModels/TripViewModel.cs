@@ -15,6 +15,7 @@ namespace TourDeOpole.ViewModels
 {
     public class TripViewModel : BaseViewModel
     {
+        public string SearchBarText { get; set; }
         public Command GoToDetailsCommand { get; set; }
         public Command GoToAddCommand { get; set; }
         public Command GoToScanQRCommand { get; set; }

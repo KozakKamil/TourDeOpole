@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Threading;
 using TourDeOpole.Models;
 using TourDeOpole.Services;
@@ -16,32 +14,36 @@ namespace TourDeOpole.ViewModels
 {
     //tutaj wszystkie metody, zwykle komendy 
 
-    public partial class PlaceViewModel : BaseViewModel
+    public partial class PlaceViewModel : BaseViewModel 
     {
         public Command GoToDetailsCommand { get; set; }
         public Command GoToAddCommand { get; set; }
         public Command GoToScanQRCommand { get; set; }
+        public Command ToggleFavoriteCommand { get; set; }
 
         public ObservableCollection<Place> myPlace { get; set; }
         public ObservableCollection<Place> FilteredPlaces { get; set; }
-
-
-
-
         public ObservableCollection<Category> Category { get; set; }
         public PlaceViewModel()
         {
             GoToDetailsCommand = new Command<Place>(GoToDetails);
             GoToAddCommand = new Command(GoToAddPlace);
             GoToScanQRCommand = new Command(GoToScanQR);
+            ToggleFavoriteCommand = new Command(FavoritePlace);
             Category = new ObservableCollection<Category>();
             myPlace = new ObservableCollection<Place>();
             LoadCategory();
             LoadPlace();
         }
 
-        private async void LoadPlace()
+        private void FavoritePlace()
         {
+            throw new NotImplementedException();
+        }
+        
+        public async void LoadPlace()
+        {
+            myPlace.Clear();
             var places = App.Database.GetPlaceAsync().Result;
             var databaseEmpty = false;
             if (places == null || places.Count == 0)
@@ -95,25 +97,6 @@ namespace TourDeOpole.ViewModels
                 FilteredPlaces = new ObservableCollection<Place>(Place.ListOfPlaces.Where(x => propertyInfo.GetValue(x, null).ToString().ToUpper().Contains(e.NewTextValue.ToUpper())));
                 OnPropertyChanged(nameof(FilteredPlaces));
             }
-            /*if (string.IsNullOrWhiteSpace(e.NewTextValue))
-            {
-                FilteredPlaces.Clear();
-                foreach (var place in myPlace)
-                {
-                    FilteredPlaces.Add(place);
-                }
-            }
-            else
-            {
-                FilteredPlaces.Clear();
-                foreach (var place in myPlace)
-                {
-                    if (place.Name.ToUpper().Contains(e.NewTextValue.ToUpper()))
-                    {
-                        FilteredPlaces.Add(place);
-                    }
-                }
-            }*/
         }
 
         private async void GoToScanQR()
@@ -180,11 +163,7 @@ namespace TourDeOpole.ViewModels
         }
         private async void GoToAddPlace()
         {
-            //Temporary Adding
-            var p = new Place { Image = "TopImage.jpg", Name = "Place 1", Description = "xdxdxd, xdx x xd xdxddd xdxdxd xdx xdxdxd xdx xdx xdxdxd xddddd xdxdxd xdxdxd xdxdxd" };
-            myPlace.Add(p);
-            await App.Database.SavePlaceAsync(p);
-            //await NavigationService.GoToAdd();
+            await NavigationService.GoToAdd();
         }
         #endregion
     }

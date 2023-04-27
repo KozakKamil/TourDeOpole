@@ -4,12 +4,22 @@
              xmlns:viewmodels="clr-namespace:TourDeOpole.ViewModels" 
              x:DataType="viewmodels:SettingViewModel"
              x:Class="TourDeOpole.Views.SettingView"
-             Title="SettingView">
+             Title="Ustawienia">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to SettingView"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <Grid RowDefinitions="3*,2*,*" ColumnDefinitions="30,*,30">
+            <Image Source="settings.png"/>
+            <Grid Grid.Row="1" Grid.Column="1" ColumnDefinitions="4*,*" RowDefinitions="*,*,*,*,*">
+                <Label Text="POWIADOMIENIA" Grid.Column="0" Grid.Row="0" VerticalOptions="Center"/>
+                <Label Text="LOKALIZACJA" Grid.Column="0" Grid.Row="1" VerticalOptions="Center"/>
+                <Label Text="POLITYKA PRYWATNOŚCI" Grid.Column="0" Grid.Row="2" VerticalOptions="Center"/>
+                <Label Text="O NAS" Grid.Column="0" Grid.Row="3" VerticalOptions="Center"/>
+                <Label Text="OCEŃ NAS" Grid.Column="0" Grid.Row="4" VerticalOptions="Center"/>
+                <Switch OnColor="#F2F2F2" ThumbColor="Blue" Grid.Column="1" Grid.Row="0" VerticalOptions="Center"/>
+                <Switch OnColor="#F2F2F2" ThumbColor="Blue" Grid.Column="1" Grid.Row="1" VerticalOptions="Center"/>
+                <ImageButton Source="Right.png" BackgroundColor="White" HorizontalOptions="End" Margin="0,0,15,0" Grid.Column="1" Grid.Row="2" VerticalOptions="Center"/>
+                <ImageButton Source="Right.png" BackgroundColor="White"  HorizontalOptions="End" Margin="0,0,15,0" Grid.Column="1" Grid.Row="3" VerticalOptions="Center"/>
+                <ImageButton Source="Right.png" BackgroundColor="White"  HorizontalOptions="End" Margin="0,0,15,0" Grid.Column="1" Grid.Row="4" VerticalOptions="Center"/>
+            </Grid>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

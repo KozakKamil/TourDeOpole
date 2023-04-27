@@ -1,5 +1,5 @@
 ﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewmodels="clr-namespace:TourDeOpole.ViewModels" x:DataType="viewmodels:PlaceDetailsViewModel"
              x:Class="TourDeOpole.Views.SimpleAddView"
              Shell.NavBarHasShadow="False"
              Title="Dodaj nowa lokalizacje"
@@ -23,7 +23,7 @@
                    Grid.RowSpan="2"
                    HeightRequest="100" 
                    WidthRequest="100" 
-                   BorderColor="Black">
+                   BorderColor="LightGray">
                 <Image Source="AddAPhoto.png" 
                        Margin="10"/>
             </Frame>
@@ -35,32 +35,40 @@
                          BackgroundColor="Transparent" 
                          Margin="60,40,0,0"/>
             <StackLayout Orientation="Horizontal" Grid.Row="4" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center">
+                <Button Style="{StaticResource ImportantButton}"
+                        Command="{Binding AddPlaceCommand}"
+                        Text="Dodaj"
+                        WidthRequest="150"
+                        BackgroundColor="{DynamicResource ButtonColor}" 
+                        Margin="0"/>
                 <Button Style="{StaticResource ImportantButton}" 
-                    Text="Dodaj"
-                    WidthRequest="150"
-                    BackgroundColor="{DynamicResource ButtonColor}" 
-                    Margin="0"/>
-                <Button Style="{StaticResource ImportantButton}" 
-                    Text="Wróć"
-                    WidthRequest="150"
-                    BackgroundColor="{DynamicResource ButtonColor}"
-                    Margin="0"/>
+                        Command="{Binding GoBackCommand}"
+                        Text="Wróć"
+                        WidthRequest="150"
+                        BackgroundColor="{DynamicResource ButtonColor}"
+                        Margin="0"/>
             </StackLayout>
             <Frame  Grid.Row="2"  
                     Grid.Column="1" 
                     Margin="0,20,0,30" 
                     CornerRadius="10"
                     Padding="0"     
-                    BorderColor="Black">
-                <Entry Margin="10,0,0,0" Placeholder="Nazwa"/>
+                    BorderColor="LightGray">
+                <Entry Margin="10,0,0,0" 
+                       Placeholder="Nazwa"
+                       Text="{Binding Name}"/>
             </Frame>
             <Frame  Grid.Row="3"
                     Grid.Column="1"
                     Margin="0,0,0,30"
                     CornerRadius="10"    
-                    BorderColor="Black"
+                    BorderColor="LightGray"
                     Padding="0">
-                <Entry Margin="10,0,0,0" VerticalTextAlignment="Start" HorizontalTextAlignment="Start" Placeholder="Opis"/>
+                <Entry Margin="10,0,0,0" 
+                       VerticalTextAlignment="Start" 
+                       HorizontalTextAlignment="Start" 
+                       Placeholder="Opis"
+                       Text="{Binding Description}"/>
             </Frame>
         </Grid>
     </ContentPage.Content>

@@ -18,6 +18,10 @@ namespace TourDeOpole.Views
             InitializeComponent();
             viewModel= new TripViewModel();
             BindingContext = viewModel;
+            Appearing += (sender, e) =>
+            {
+                viewModel.GetLocation();
+            };
         }
     }
 }
