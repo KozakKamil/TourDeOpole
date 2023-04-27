@@ -13,9 +13,13 @@ namespace TourDeOpole.ViewModels
     public class PlaceDetailsViewModel : BaseViewModel
     {
         public Command GoToShareQRCommand { get; set; }
+        public Command AddPlaceCommand { get; set; }
+        public Command GoBackCommand { get; set; }
         public PlaceDetailsViewModel()
         {
             GoToShareQRCommand = new Command(async () => { await GoToShareQR(); });
+            AddPlaceCommand = new Command(async () => { await Add(); });
+            GoBackCommand = new Command(async () => { await GoBack(); });
         }
 
         private int placeID;
@@ -56,12 +60,9 @@ namespace TourDeOpole.ViewModels
         {
             try
             {
-                var trip = Place.ListOfPlaces.Select(x => x).Where(x => x.PlaceID == placeID).FirstOrDefault();
-                if (trip == null) return;
-                Name = trip.Name;
-                Description = trip.Description;
-                Image = trip.Image;
-
+                var place = Place.ListOfPlaces.Select(x => x).Where(x => x.PlaceID == placeID).FirstOrDefault();
+                if (place == null) return;
+                ConfigPlace(place);
             }
             catch
             {
@@ -69,9 +70,43 @@ namespace TourDeOpole.ViewModels
             }
         }
 
+        private Place ConfigPlace(Place place)
+        {
+            Name = place.Name;
+            Description = place.Description;
+            Image = place.Image;
+            return place;
+        }
+
+        private async Task Add()
+        {
+            await LocationService.GetLocation();
+            var place = new Place
+            {
+                PlaceID = Place.ListOfPlaces.Max(x=>x.PlaceID)+1,
+                Name= Name,
+                Description = Description,
+                Image= Image,
+            };
+
+            if(LocationService.Location!=null)
+            {
+                place.Latitude = LocationService.Location.Latitude;
+                place.Longitude = LocationService.Location.Longitude;
+            }
+
+            await App.Database.SavePlaceAsync(place);
+            await NavigationService.GoBack();
+        }
+
         private async Task GoToShareQR()
         {
             await NavigationService.GoToShareQR();
+        }
+
+        private async Task GoBack()
+        {
+            await NavigationService.GoBack();
         }
     }
 }
