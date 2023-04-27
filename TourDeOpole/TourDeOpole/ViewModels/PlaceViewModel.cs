@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Runtime.CompilerServices;
+using System.Reflection;
 using System.Threading;
 using TourDeOpole.Models;
 using TourDeOpole.Services;
@@ -16,13 +16,13 @@ namespace TourDeOpole.ViewModels
 
     public partial class PlaceViewModel : BaseViewModel 
     {
-        public string SearchBarText { get; set; }
         public Command GoToDetailsCommand { get; set; }
         public Command GoToAddCommand { get; set; }
         public Command GoToScanQRCommand { get; set; }
         public Command ToggleFavoriteCommand { get; set; }
 
         public ObservableCollection<Place> myPlace { get; set; }
+        public ObservableCollection<Place> FilteredPlaces { get; set; }
         public ObservableCollection<Category> Category { get; set; }
         public PlaceViewModel()
         {
@@ -32,8 +32,8 @@ namespace TourDeOpole.ViewModels
             ToggleFavoriteCommand = new Command(FavoritePlace);
             Category = new ObservableCollection<Category>();
             myPlace = new ObservableCollection<Place>();
-
             LoadCategory();
+            LoadPlace();
         }
 
         private void FavoritePlace()
@@ -59,6 +59,9 @@ namespace TourDeOpole.ViewModels
                     await App.Database.SavePlaceAsync(place);
             }
             Place.ListOfPlaces = myPlace;
+
+            FilteredPlaces = new ObservableCollection<Place>(myPlace);
+
             databaseEmpty = false;
         }
 
@@ -81,11 +84,79 @@ namespace TourDeOpole.ViewModels
             databaseEmpty = false;
         }
 
-        #region Navigation
+        public void OnSearchTextChanged(object sender, TextChangedEventArgs e, string searchParameter)
+        {
+            PropertyInfo propertyInfo = typeof(Place).GetProperty(searchParameter);
+            if (string.IsNullOrWhiteSpace(e.NewTextValue))
+            {
+                FilteredPlaces = new ObservableCollection<Place>(Place.ListOfPlaces);
+                OnPropertyChanged(nameof(FilteredPlaces));
+            }
+            else
+            {
+                FilteredPlaces = new ObservableCollection<Place>(Place.ListOfPlaces.Where(x => propertyInfo.GetValue(x, null).ToString().ToUpper().Contains(e.NewTextValue.ToUpper())));
+                OnPropertyChanged(nameof(FilteredPlaces));
+            }
+        }
+
         private async void GoToScanQR()
         {
             await NavigationService.GoToScanQR();
         }
+
+
+        #region GetLocation
+        public string myLocCity { get; set; }
+        public string myLocAdress { get; set; }
+        public async void getLocation()
+        {
+            try
+            {
+                var request = new GeolocationRequest(GeolocationAccuracy.High, TimeSpan.FromSeconds(10));
+                var cts = new CancellationTokenSource();
+                var mylocation = await Geolocation.GetLocationAsync(request, cts.Token);
+                var location = new Location(50.664286, 17.936186);//do remove
+                if (location != null)
+                {
+                    var placemarks = await Geocoding.GetPlacemarksAsync(location.Latitude, location.Longitude);
+                    var placemark = placemarks?.FirstOrDefault();
+
+                    var geocodeAddress =
+                 $"{placemark.Thoroughfare} " +
+                 $" {placemark.SubThoroughfare}";
+           
+                 myLocAdress =geocodeAddress;
+                    myLocCity = $"{placemark.Locality}";
+
+                    OnPropertyChanged(nameof(myLocAdress));
+                    OnPropertyChanged(nameof(myLocCity));
+                    //DisplayAlert("Tytuł", $"Latitude: {location.Latitude}, Longitude: {location.Longitude}, Altitude: {location.Altitude}", "OK");
+                }
+
+                //DisplayAlert("Tytuł", $"Dystans {CalculateDistanceBetweenLocation(location, mylocation)}", "Super");
+            }
+            catch (PermissionException pEx)
+            {
+                if (pEx != null)
+                {
+                    Alert.DisplayAlert("Wystąpił błąd", "Niestety nie mamy uprawnień do pobrania Twojej lokalizacji", "Dobrze");
+                }
+            }
+            catch
+            {
+                Alert.DisplayAlert("Wystąpił błąd", "Niestety nie udało się pobrać Twojej lokalizacji", "Dobrze");
+            }
+        }
+
+
+
+        public double CalculateDistanceBetweenLocation(Location location, Location myLocation)
+        {
+            return Location.CalculateDistance(location, myLocation, DistanceUnits.Kilometers);
+        }
+        #endregion 
+
+        #region Navigation
         private async void GoToDetails(Place place)
         {
             await Shell.Current.GoToAsync($"{nameof(PlaceDetailsView)}?{nameof(PlaceDetailsViewModel.PlaceID)}={place.PlaceID}");
