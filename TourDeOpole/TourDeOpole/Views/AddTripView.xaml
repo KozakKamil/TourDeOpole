@@ -28,7 +28,7 @@
                 <Image Source="AddAPhoto.png" 
                        Margin="10"/>
             </Frame>
-            <ImageButton Grid.Row="2" 
+            <Image Grid.Row="2" 
                          Grid.Column="2" 
                          Source="icon_text_Trasa.png" 
                          HorizontalOptions="Center" 
@@ -39,7 +39,8 @@
                          Source="icon_plus.png" 
                          HorizontalOptions="Center" 
                          VerticalOptions="Center"
-                         Margin="-70,-90,0,0"/>
+                         Margin="-70,-90,0,0"
+                         Clicked="OnButtonClickedAdd"/>
             
             <ImageButton Grid.Row="2" 
                          Grid.Column="2" 
@@ -61,8 +62,7 @@
                         Text="Dodaj"
                         WidthRequest="150"
                         BackgroundColor="{DynamicResource ButtonColor}" 
-                        Margin="0"
-                        Clicked="OnButtonClickedAdd"/> 
+                        Margin="0"/> 
                 <Button Style="{StaticResource ImportantButton}" 
                         Command="{Binding GoBackCommand}"
                         Text="Cofnij"
@@ -70,9 +70,9 @@
                         BackgroundColor="{DynamicResource ButtonColor}"
                         Margin="0"/>
             </StackLayout>
-
-            <StackLayout Grid.Row="2" Grid.RowSpan="1" Grid.Column="1" Margin="0,20,0,30" x:Name="AddTripViewLayout">
-                <!--<Frame 
+            <ScrollView Grid.Row="2" Grid.RowSpan="2" Grid.Column="1" Margin="0,20,0,30">
+                <StackLayout Grid.Row="2" Grid.RowSpan="1" Grid.Column="1" Margin="0,20,0,30" x:Name="AddTripViewLayout">
+                    <!--<Frame 
                     Margin="0,20,0,30" 
                     CornerRadius="10"
                     Padding="0"     
@@ -80,8 +80,8 @@
                     <Picker  SelectedItem="xd" Margin="15,15,0,0" BackgroundColor="red"/>
                 </Frame>
                -->
-            </StackLayout>
-
+                </StackLayout>
+            </ScrollView>
 
         </Grid>
     </ContentPage.Content>

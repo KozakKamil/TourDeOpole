@@ -19,40 +19,45 @@ namespace TourDeOpole.Views
         public AddTripView()
         {
             InitializeComponent();
-            viewModel= new AddTripViewModel();
-            BindingContext= viewModel;
+            viewModel = new AddTripViewModel();
+            BindingContext = viewModel;
         }
 
         private int Count = 0;
 
         private async void OnButtonClickedRemove(object sender, EventArgs e)
         {
-           try {
+            try
+            {
                 AddTripViewLayout.Children.RemoveAt(Count - 1);
                 Count--;
-            } catch (IndexOutOfRangeException ex)
-           {
+            }
+            catch (IndexOutOfRangeException ex)
+            {
 
                 await DisplayAlert("nazwa", "wiadomosc", "ok");
                 throw new IndexOutOfRangeException("brak elementow do usuniecia", ex);
-           }
+            }
         }
-                
-            private async void OnButtonClickedAdd(object sender, EventArgs e)
+
+        private async void OnButtonClickedAdd(object sender, EventArgs e)
         {
-            Frame frame = new Frame();
-            frame.Margin =new Thickness (0, 20, 0, 30);
-            frame.CornerRadius = 10;
-            frame.Padding = 0;
-            frame.BorderColor = Color.LightGray;
-            
-            Picker dynamicPicker = new Picker();
-            dynamicPicker.Margin = new Thickness(15, 15, 0, 0);
-            await DisplayAlert("Sukces!", "Dodano nowa trase", "ok");
-            frame.Content = dynamicPicker;
-            AddTripViewLayout.Children.Add(frame);
+            var dynamicPicker = new Picker()
+            {
+                Margin = new Thickness(5, 5, 0, 0),
+            };
+
+            AddTripViewLayout.Children.Add(new Frame()
+            {
+                Margin = new Thickness(0, 10, 0, 10),
+                CornerRadius = 10,
+                Padding = 0,
+                BorderColor = Color.LightGray,
+                Content = dynamicPicker
+            });
             Count++;
-        
+            await DisplayAlert("Sukces!", "Dodano nowa trase", "ok");
+
         }
 
         //Tutaj piszemy tylko UI, metody do viewModelu
