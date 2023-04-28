@@ -49,15 +49,13 @@ namespace TourDeOpole.Views
 
             AddTripViewLayout.Children.Add(new Frame()
             {
-                Margin = new Thickness(0, 10, 0, 10),
+                Margin = new Thickness(0, 5, 0, 5),
                 CornerRadius = 10,
                 Padding = 0,
                 BorderColor = Color.LightGray,
                 Content = dynamicPicker
             });
             Count++;
-            await DisplayAlert("Sukces!", "Dodano nowa trase", "ok");
-
         }
 
         //Tutaj piszemy tylko UI, metody do viewModelu
