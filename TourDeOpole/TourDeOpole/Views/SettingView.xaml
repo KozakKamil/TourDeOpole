@@ -7,7 +7,7 @@
              Title="Ustawienia">
     <ContentPage.Content>
         <Grid RowDefinitions="3*,2*,*" ColumnDefinitions="30,*,30">
-            <Image Source="settings.png"/>
+            <Image Source="settings.png" Grid.Row="1"/>
             <Grid Grid.Row="1" Grid.Column="1" ColumnDefinitions="4*,*" RowDefinitions="*,*,*,*,*">
                 <Label Text="POWIADOMIENIA" Grid.Column="0" Grid.Row="0" VerticalOptions="Center"/>
                 <Label Text="LOKALIZACJA" Grid.Column="0" Grid.Row="1" VerticalOptions="Center"/>
