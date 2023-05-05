@@ -31,7 +31,6 @@ namespace TourDeOpole.ViewModels
         public string myLocCity { get; set; }
         public string myLocAdress { get; set; }
 
-        public ObservableCollection<Trip> ListOfTrips { get; set; }
 
 
         protected bool SetProperty<T>(ref T backingStore, T value,
@@ -54,11 +53,12 @@ namespace TourDeOpole.ViewModels
             try
             {
                 await LocationService.GetLocation();
+
                 var placemark = LocationService.Placemark;
+
                 if (placemark == null)
-                {
                     return;
-                }
+
                 myLocAdress = $"{placemark.Thoroughfare}  {placemark.SubThoroughfare}"; ;
                 myLocCity = $"{placemark.Locality}";
 
@@ -77,6 +77,12 @@ namespace TourDeOpole.ViewModels
                 Alert.DisplayAlert("Wystąpił błąd", "Niestety nie udało się pobrać Twojej lokalizacji", "Dobrze");
             }
         }
+
+        public double CalculateDistanceBetweenLocation(Location location, Location myLocation)
+        {
+            return Location.CalculateDistance(location, myLocation, DistanceUnits.Kilometers);
+        }
+
         #endregion 
 
         #region INotifyPropertyChanged
