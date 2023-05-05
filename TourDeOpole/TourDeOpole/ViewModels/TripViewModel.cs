@@ -27,7 +27,9 @@ namespace TourDeOpole.ViewModels
             ListOfTrips = new ObservableCollection<Trip>();
             LoadTrips();
         }
-
+        /// <summary>
+        /// Method loads a list of trips from either a local database or a remote URL. 
+        /// </summary>
         private async void LoadTrips()
         {
             var trips = App.Database.GetTripAsync().Result;

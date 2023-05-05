@@ -33,7 +33,15 @@ namespace TourDeOpole.ViewModels
 
         public ObservableCollection<Trip> ListOfTrips { get; set; }
 
-
+        /// <summary>
+        /// Sets a property with a new value and raises the PropertyChanged event if the value has changed.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="backingStore"></param>
+        /// <param name="value"></param>
+        /// <param name="propertyName"></param>
+        /// <param name="onChanged"></param>
+        /// <returns></returns>
         protected bool SetProperty<T>(ref T backingStore, T value,
             [CallerMemberName] string propertyName = "",
             Action onChanged = null)
@@ -48,7 +56,9 @@ namespace TourDeOpole.ViewModels
         }
 
         #region GetLocation
-
+        /// <summary>
+        /// Asynchronously gets the current location of the device and updates the corresponding properties of the object.
+        /// </summary>
         public async void GetLocation()
         {
             try
@@ -80,7 +90,12 @@ namespace TourDeOpole.ViewModels
         #endregion 
 
         #region INotifyPropertyChanged
+
         public event PropertyChangedEventHandler PropertyChanged;
+        /// <summary>
+        /// Raises the PropertyChanged event with the specified property name.
+        /// </summary>
+        /// <param name="propertyName"></param>
         protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
             var changed = PropertyChanged;

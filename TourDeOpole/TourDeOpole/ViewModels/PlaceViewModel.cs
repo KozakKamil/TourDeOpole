@@ -40,7 +40,9 @@ namespace TourDeOpole.ViewModels
         {
             throw new NotImplementedException();
         }
-        
+        /// <summary>
+        /// Loads the list of places from the database or URL and sets it as the current list of places.
+        /// </summary>
         public async void LoadPlace()
         {
             myPlace.Clear();
@@ -64,7 +66,9 @@ namespace TourDeOpole.ViewModels
 
             databaseEmpty = false;
         }
-
+        /// <summary>
+        /// Loads the list of categories from the database or URL and sets it as the current list of categories.
+        /// </summary>
         private async void LoadCategory()
         {
             var categories = App.Database.GetCategoryeAsync().Result;
@@ -83,7 +87,12 @@ namespace TourDeOpole.ViewModels
             }
             databaseEmpty = false;
         }
-
+        /// <summary>
+        /// This function loads the list of categories from the database or URL and sets it as the current list of categories.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <param name="searchParameter"></param>
         public void OnSearchTextChanged(object sender, TextChangedEventArgs e, string searchParameter)
         {
             PropertyInfo propertyInfo = typeof(Place).GetProperty(searchParameter);
@@ -108,6 +117,9 @@ namespace TourDeOpole.ViewModels
         #region GetLocation
         public string myLocCity { get; set; }
         public string myLocAdress { get; set; }
+        /// <summary>
+        /// This method uses Xamarin.Essentials to retrieve the user's location and then converts it to a readable address format.
+        /// </summary>
         public async void getLocation()
         {
             try

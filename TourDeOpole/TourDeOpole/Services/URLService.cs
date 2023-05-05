@@ -29,7 +29,12 @@ namespace TourDeOpole.Services
             var json = await GetJson(categoryUrl);
             return JsonConvert.DeserializeObject<List<Category>>(json);
         }
-
+        /// <summary>
+        /// This code is a method that uses an HTTP client to send a request to a specified URL and return the JSON string response.
+        /// </summary>
+        /// <param name="url"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
         public static async Task<string> GetJson(string url)
         {
             using (var httpClient = new HttpClient())

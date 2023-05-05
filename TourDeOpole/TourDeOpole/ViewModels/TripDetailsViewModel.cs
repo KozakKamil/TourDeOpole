@@ -59,7 +59,10 @@ namespace TourDeOpole.ViewModels
             get => time;
             set => SetProperty(ref time, value);
         }
-
+        /// <summary>
+        /// This function loads the details of a trip with the given tripID.
+        /// </summary>
+        /// <param name="tripID"></param>
         private async void LoadTripDetails(int tripID)
         {
             try
