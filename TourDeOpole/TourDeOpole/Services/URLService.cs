@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using TourDeOpole.Models;
+using Xamarin.Forms;
 
 namespace TourDeOpole.Services
 {
@@ -44,5 +45,7 @@ namespace TourDeOpole.Services
                 }
             }
         }
+        
     }
 }
+

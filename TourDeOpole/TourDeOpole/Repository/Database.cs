@@ -32,6 +32,11 @@ namespace TourDeOpole.Repository
             return _connection.InsertAsync(place);
         }
 
+        public Task<int> EditPlaceAsync(Place place)
+        {
+            return _connection.UpdateAsync(place);
+        }
+
         public Task DeletePlace(Place place)
         {
             return _connection.DeleteAsync(place);
