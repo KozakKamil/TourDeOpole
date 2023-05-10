@@ -14,7 +14,7 @@ namespace TourDeOpole.ViewModels
 {
     //tutaj wszystkie metody, zwykle komendy 
 
-    public partial class PlaceViewModel : BaseViewModel 
+    public partial class PlaceViewModel : BaseViewModel
     {
         public Command GoToDetailsCommand { get; set; }
         public Command GoToAddCommand { get; set; }
@@ -29,18 +29,17 @@ namespace TourDeOpole.ViewModels
             GoToDetailsCommand = new Command<Place>(GoToDetails);
             GoToAddCommand = new Command(GoToAddPlace);
             GoToScanQRCommand = new Command(GoToScanQR);
-            ToggleFavoriteCommand = new Command(FavoritePlace);
+            ToggleFavoriteCommand = new Command<Place>((place) =>
+            {
+                place.IsFavourite = !place.IsFavourite;
+                LoadPlace();
+            });
             Category = new ObservableCollection<Category>();
             myPlace = new ObservableCollection<Place>();
             LoadCategory();
             LoadPlace();
         }
 
-        private void FavoritePlace()
-        {
-            throw new NotImplementedException();
-        }
-        
         public async void LoadPlace()
         {
             myPlace.Clear();
@@ -124,8 +123,8 @@ namespace TourDeOpole.ViewModels
                     var geocodeAddress =
                  $"{placemark.Thoroughfare} " +
                  $" {placemark.SubThoroughfare}";
-           
-                 myLocAdress =geocodeAddress;
+
+                    myLocAdress = geocodeAddress;
                     myLocCity = $"{placemark.Locality}";
 
                     OnPropertyChanged(nameof(myLocAdress));
