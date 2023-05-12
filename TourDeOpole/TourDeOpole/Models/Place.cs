@@ -20,6 +20,7 @@ namespace TourDeOpole.Models
         public bool IsFavourite { get; set; }
         public string ImageSource => IsFavourite? "favoriteCheck.png" : "favorite.png";
 
+
         [Ignore]
         public static ObservableCollection<Place> ListOfPlaces { get; set; }
     }
