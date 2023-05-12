@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using TourDeOpole.Models;
 using TourDeOpole.Services;
 using Xamarin.Forms;
@@ -12,14 +13,43 @@ namespace TourDeOpole.ViewModels
     [QueryProperty(nameof(PlaceID), nameof(PlaceID))]
     public class PlaceDetailsViewModel : BaseViewModel
     {
-        public Command GoToShareQRCommand { get; set; }
-        public Command AddPlaceCommand { get; set; }
-        public Command GoBackCommand { get; set; }
+        public ICommand GoToShareQRCommand { get; set; }
+        public ICommand AddPlaceCommand { get; set; }
+        public ICommand GoBackCommand { get; set; }
         public PlaceDetailsViewModel()
         {
-            GoToShareQRCommand = new Command(async () => { await GoToShareQR(); });
-            AddPlaceCommand = new Command(async () => { await Add(); });
-            GoBackCommand = new Command(async () => { await GoBack(); });
+            GoToShareQRCommand = new Command(async () =>
+            {
+                await NavigationService.GoToShareQR();
+            });
+                    /// <summary>
+        /// Adds a new place to the list of places with the provided information and saves it to the database.
+        /// </summary>
+        /// <returns></returns>
+            AddPlaceCommand = new Command(async () =>
+            {
+                await LocationService.GetLocation();
+                var place = new Place
+                {
+                    PlaceID = Place.ListOfPlaces.Max(x => x.PlaceID) + 1,
+                    Name = Name,
+                    Description = Description,
+                    Image = Image,
+                };
+
+                if (LocationService.Location != null)
+                {
+                    place.Latitude = LocationService.Location.Latitude;
+                    place.Longitude = LocationService.Location.Longitude;
+                }
+
+                await App.Database.SavePlaceAsync(place);
+                await NavigationService.GoBack();
+            });
+            GoBackCommand = new Command(async () =>
+            {
+                await NavigationService.GoBack();
+            });
         }
 
         private int placeID;
@@ -79,40 +109,6 @@ namespace TourDeOpole.ViewModels
             Description = place.Description;
             Image = place.Image;
             return place;
-        }
-        /// <summary>
-        /// Adds a new place to the list of places with the provided information and saves it to the database.
-        /// </summary>
-        /// <returns></returns>
-        private async Task Add()
-        {
-            await LocationService.GetLocation();
-            var place = new Place
-            {
-                PlaceID = Place.ListOfPlaces.Max(x=>x.PlaceID)+1,
-                Name= Name,
-                Description = Description,
-                Image= Image,
-            };
-
-            if(LocationService.Location!=null)
-            {
-                place.Latitude = LocationService.Location.Latitude;
-                place.Longitude = LocationService.Location.Longitude;
-            }
-
-            await App.Database.SavePlaceAsync(place);
-            await NavigationService.GoBack();
-        }
-
-        private async Task GoToShareQR()
-        {
-            await NavigationService.GoToShareQR();
-        }
-
-        private async Task GoBack()
-        {
-            await NavigationService.GoBack();
         }
     }
 }

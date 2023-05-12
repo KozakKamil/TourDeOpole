@@ -17,6 +17,9 @@ namespace TourDeOpole.Models
         public double Latitude { get; set; }
         public double Longitude { get; set; }
         public bool IsCustom { get; set; }
+        public bool IsFavourite { get; set; }
+        public string ImageSource => IsFavourite? "favoriteCheck.png" : "favorite.png";
+
 
         [Ignore]
         public static ObservableCollection<Place> ListOfPlaces { get; set; }

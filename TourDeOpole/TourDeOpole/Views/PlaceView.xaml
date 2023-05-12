@@ -58,12 +58,11 @@
                                     <Image Grid.Row="0" Grid.RowSpan="2" Grid.Column="0"  Source="{Binding Image}" Aspect="AspectFill" />
                                     <StackLayout Grid.Column="1" Margin="10,10,0,0">
                                         <Label Text="{Binding Name}" FontAttributes="Bold"/>
-                                        <Label Text="{Binding Description}"/>
                                     </StackLayout>
                                 </Grid>
 
                             </Frame>
-                            <ImageButton Grid.Column="1" Scale="1"  Source="favorite.png" BackgroundColor="White" Padding="0,0,0,0" Margin="-10,0,5,0" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:PlaceViewModel}},Path=ToggleFavoriteCommand}"/>
+                            <ImageButton Grid.Column="1" Scale="1" Source="{Binding ImageSource}" BackgroundColor="White" Padding="0,0,0,0" Margin="-10,0,5,0" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:PlaceViewModel}},Path=ToggleFavoriteCommand}" CommandParameter="{Binding .}"/>
                         </Grid>
                     </Frame>
                 </DataTemplate>

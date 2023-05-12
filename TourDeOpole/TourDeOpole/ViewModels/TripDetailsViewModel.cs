@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using TourDeOpole.Models;
 using TourDeOpole.Services;
 using Xamarin.Forms;
@@ -12,10 +13,13 @@ namespace TourDeOpole.ViewModels
     [QueryProperty(nameof(TripID), nameof(TripID))]
     public class TripDetailsViewModel : BaseViewModel
     {
-        public Command GoToShareQRCommand { get; set; }
+        public ICommand GoToShareQRCommand { get; set; }
         public TripDetailsViewModel()
         {
-            GoToShareQRCommand = new Command(async() => { await GoToShareQR(); }) ;
+            GoToShareQRCommand = new Command(async () =>
+            {
+                await NavigationService.GoToShareQR();
+            });
         }
 
         int tripDetailsID;
@@ -71,19 +75,14 @@ namespace TourDeOpole.ViewModels
                 if (trip == null) return;
                 Name = trip.Name;
                 Description = trip.Description;
-                Time=$"Czas trwania: {trip.Time}";
-                Image= trip.Image;
+                Time = $"Czas trwania: {trip.Time}";
+                Image = trip.Image;
 
             }
             catch
             {
                 await App.Current.MainPage.DisplayAlert("Błąd", "Coś poszło nie tak, nie udało się wczytać szczegółów", "Dobrze");
             }
-        }
-
-        private async Task GoToShareQR()
-        {
-            await NavigationService.GoToShareQR();
         }
     }
 }

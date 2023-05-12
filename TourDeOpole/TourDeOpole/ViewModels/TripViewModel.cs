@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using TourDeOpole.Models;
 using TourDeOpole.Repository;
 using TourDeOpole.Services;
@@ -15,15 +16,27 @@ namespace TourDeOpole.ViewModels
 {
     public class TripViewModel : BaseViewModel
     {
+        public ObservableCollection<Trip> ListOfTrips { get; set; } = new ObservableCollection<Trip>();
+
         public string SearchBarText { get; set; }
-        public Command GoToDetailsCommand { get; set; }
-        public Command GoToAddCommand { get; set; }
-        public Command GoToScanQRCommand { get; set; }
+        public ICommand GoToDetailsCommand { get; set; }
+        public ICommand GoToAddCommand { get; set; }
+        public ICommand GoToScanQRCommand { get; set; }
+
         public TripViewModel()
         {
-            GoToDetailsCommand = new Command<Trip>(GoToDetails);
-            GoToAddCommand = new Command(GoToAddTrip);
-            GoToScanQRCommand = new Command(GoToScanQR);
+            GoToDetailsCommand = new Command<Trip>(async (trip) =>
+            {
+                await Shell.Current.GoToAsync($"{nameof(TripDetailsView)}?{nameof(TripDetailsViewModel.TripID)}={trip.TripID}");
+            });
+            GoToAddCommand = new Command(async() => 
+            {
+                await NavigationService.GoToAddTrip();
+            });
+            GoToScanQRCommand = new Command(async() => 
+            {
+                await NavigationService.GoToScanQR();
+            });
             ListOfTrips = new ObservableCollection<Trip>();
             LoadTrips();
         }
@@ -49,21 +62,5 @@ namespace TourDeOpole.ViewModels
             databaseEmpty = false;
             Trip.ListOfTrips = ListOfTrips;
         }
-
-
-        private async void GoToDetails(Trip trip)
-        {
-            await Shell.Current.GoToAsync($"{nameof(TripDetailsView)}?{nameof(TripDetailsViewModel.TripID)}={trip.TripID}");
-        }
-        private async void GoToAddTrip()
-        {
-            await NavigationService.GoToAddTrip();
-        }
-
-        private async void GoToScanQR()
-        {
-            await NavigationService.GoToScanQR();
-        }
-     
     }
 }

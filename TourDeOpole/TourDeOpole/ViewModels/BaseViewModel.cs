@@ -31,7 +31,6 @@ namespace TourDeOpole.ViewModels
         public string myLocCity { get; set; }
         public string myLocAdress { get; set; }
 
-        public ObservableCollection<Trip> ListOfTrips { get; set; }
 
         /// <summary>
         /// Sets a property with a new value and raises the PropertyChanged event if the value has changed.
@@ -64,11 +63,12 @@ namespace TourDeOpole.ViewModels
             try
             {
                 await LocationService.GetLocation();
+
                 var placemark = LocationService.Placemark;
+
                 if (placemark == null)
-                {
                     return;
-                }
+
                 myLocAdress = $"{placemark.Thoroughfare}  {placemark.SubThoroughfare}"; ;
                 myLocCity = $"{placemark.Locality}";
 
@@ -79,14 +79,20 @@ namespace TourDeOpole.ViewModels
             {
                 if (pEx != null)
                 {
-                    Alert.DisplayAlert("Wystąpił błąd", "Niestety nie mamy uprawnień do pobrania Twojej lokalizacji", "Dobrze");
+                    //Alert.DisplayAlert("Wystąpił błąd", "Niestety nie mamy uprawnień do pobrania Twojej lokalizacji", "Dobrze");
                 }
             }
             catch
             {
-                Alert.DisplayAlert("Wystąpił błąd", "Niestety nie udało się pobrać Twojej lokalizacji", "Dobrze");
+               // Alert.DisplayAlert("Wystąpił błąd", "Niestety nie udało się pobrać Twojej lokalizacji", "Dobrze");
             }
         }
+
+        public double CalculateDistanceBetweenLocation(Location location, Location myLocation)
+        {
+            return Location.CalculateDistance(location, myLocation, DistanceUnits.Kilometers);
+        }
+
         #endregion 
 
         #region INotifyPropertyChanged
