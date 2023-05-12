@@ -11,6 +11,12 @@ namespace TourDeOpole.Services
     public class URLService
     {
         private static readonly string ObjectListUrl = "https://raw.githubusercontent.com/KozakKamil/TourDeOpole/master/Data/0.json";
+        private static readonly string ImageListUrl = "https://raw.githubusercontent.com/KozakKamil/TourDeOpole/master/Images/Trips/";
+
+        public static string SetURL(string v)
+        {
+            return ImageListUrl + v;
+        }
         public static async Task<List<Place>> GetPlaces()
         {
             var placeUrl = ObjectListUrl.Replace("0", "jsonPlace");
@@ -45,7 +51,7 @@ namespace TourDeOpole.Services
                 }
             }
         }
-        
+
     }
 }
 
