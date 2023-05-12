@@ -12,6 +12,10 @@ namespace TourDeOpole.Services
     {
         public static Location Location { get; set; }
         public static Placemark Placemark { get; set; }
+        /// <summary>
+        /// This code is a method that tries to get the user's location using the Geolocation plugin and displays an alert if an error occurs.
+        /// </summary>
+        /// <returns></returns>
         public static async Task GetLocation()
         {
             try

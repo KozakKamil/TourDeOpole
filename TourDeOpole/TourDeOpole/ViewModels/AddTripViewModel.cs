@@ -52,6 +52,11 @@ namespace TourDeOpole.ViewModels
             get => description;
             set => SetProperty(ref description, value);
         }
+
+        /// <summary>
+        /// Asynchronous method that loads the details of a specific trip based on the trip ID parameter passed to it.
+        /// </summary>
+        /// <param name="tripID"></param>
         private async void LoadTripDetails(int tripID)
         {
             try

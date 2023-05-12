@@ -22,6 +22,10 @@ namespace TourDeOpole.ViewModels
             {
                 await NavigationService.GoToShareQR();
             });
+                    /// <summary>
+        /// Adds a new place to the list of places with the provided information and saves it to the database.
+        /// </summary>
+        /// <returns></returns>
             AddPlaceCommand = new Command(async () =>
             {
                 await LocationService.GetLocation();
@@ -81,7 +85,10 @@ namespace TourDeOpole.ViewModels
             get => description;
             set => SetProperty(ref description, value);
         }
-
+        /// <summary>
+        /// Loads the details of a place with the specified ID and configures the place.
+        /// </summary>
+        /// <param name="placeID"></param>
         private async void LoadPlaceDetails(int placeID)
         {
             try
