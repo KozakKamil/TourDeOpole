@@ -58,7 +58,6 @@
                                     <Image Grid.Row="0" Grid.RowSpan="2" Grid.Column="0"  Source="{Binding Image}" Aspect="AspectFill" />
                                     <StackLayout Grid.Column="1" Margin="10,10,0,0">
                                         <Label Text="{Binding Name}" FontAttributes="Bold"/>
-                                        <Label Text="{Binding Description}"/>
                                     </StackLayout>
                                 </Grid>
 
