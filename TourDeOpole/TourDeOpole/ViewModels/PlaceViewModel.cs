@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Threading;
 using System.Windows.Input;
 using TourDeOpole.Models;
+using TourDeOpole.Repository;
 using TourDeOpole.Services;
 using TourDeOpole.Views;
 using Xamarin.Essentials;
@@ -40,11 +41,10 @@ namespace TourDeOpole.ViewModels
             {
                 await NavigationService.GoToScanQR();
             });
-            ToggleFavoriteCommand = new Command<Place>((place) =>
+            ToggleFavoriteCommand = new Command<Place>(async(place) =>
             {
-                var index = Place.ListOfPlaces.IndexOf(place);
-                place.IsFavourite = !place.IsFavourite;
-                Place.ListOfPlaces[index] = place;
+                place.IsFavourite= !place.IsFavourite;
+                await App.Database.EditPlaceAsync(place);
                 LoadPlace();
             });
 
@@ -55,8 +55,8 @@ namespace TourDeOpole.ViewModels
         public async void LoadPlace()
         {
             FilteredPlaces.Clear();
-            var places = App.Database.GetPlaceAsync().Result;
             var databaseEmpty = false;
+            var places = App.Database.GetPlaceAsync().Result;
             if (places == null || places.Count == 0)
             {
                 places = await URLService.GetPlaces();
