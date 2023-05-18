@@ -28,10 +28,28 @@ namespace TourDeOpole.ViewModels
             set { SetProperty(ref title, value); }
         }
 
-        public string myLocCity { get; set; }
-        public string myLocAdress { get; set; }
+        private string _myLocAdress;
+        private string _myLocCity;
 
+        public string MyLocAdress
+        {
+            get { return _myLocAdress; }
+            set
+            {
+                _myLocAdress = value;
+                OnPropertyChanged(nameof(MyLocAdress));
+            }
+        }
 
+        public string MyLocCity
+        {
+            get { return _myLocCity; }
+            set
+            {
+                _myLocCity = value;
+                OnPropertyChanged(nameof(MyLocCity));
+            }
+        }
         /// <summary>
         /// Sets a property with a new value and raises the PropertyChanged event if the value has changed.
         /// </summary>
@@ -60,20 +78,31 @@ namespace TourDeOpole.ViewModels
         /// </summary>
         public async void GetLocation()
         {
+       
             try
             {
+               
                 await LocationService.GetLocation();
 
                 var placemark = LocationService.Placemark;
 
                 if (placemark == null)
+                {
+                    MyLocAdress = "Lokalizacji"; 
+                    MyLocCity = "Brak";
                     return;
+                }
+                
 
-                myLocAdress = $"{placemark.Thoroughfare}  {placemark.SubThoroughfare}"; ;
-                myLocCity = $"{placemark.Locality}";
+                if (MyLocAdress != null && MyLocCity != null)
+                {
 
-                OnPropertyChanged(nameof(myLocAdress));
-                OnPropertyChanged(nameof(myLocCity));
+                    MyLocAdress = $"{placemark.Thoroughfare}  {placemark.SubThoroughfare}"; ;
+                    MyLocCity = $"{placemark.Locality}";
+                }
+                OnPropertyChanged(nameof(MyLocAdress));
+                OnPropertyChanged(nameof(MyLocCity));
+
             }
             catch (PermissionException pEx)
             {
