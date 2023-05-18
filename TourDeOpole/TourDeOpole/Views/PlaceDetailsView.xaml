@@ -7,7 +7,7 @@
              Shell.NavBarHasShadow="False"
              Shell.TabBarIsVisible="False"
              Title="{Binding Name}">
-    
+
     <Grid RowDefinitions="25,25,90,*,50" 
           ColumnDefinitions="*,*,150,*,*"
           BackgroundColor="{DynamicResource Background}">
@@ -24,8 +24,8 @@
                Grid.ColumnSpan="1" 
                HeightRequest="200" 
                WidthRequest="200">
-               
-            <Image Source="TopImage.png" 
+
+            <Image Source="{Binding Image}" 
                    Aspect="AspectFill"/>
         </Frame>
         <Label Text="{Binding Description}"
@@ -34,11 +34,14 @@
                Padding="30,30,30,0" 
                Grid.ColumnSpan="5"
                FontSize="Medium"/>
-        <Button Text="ShareQR" 
-                Command="{Binding GoToShareQRCommand}" 
-                BackgroundColor="Red" 
-                Grid.Column="0" 
-                Grid.Row="4"
-                Grid.ColumnSpan="5"/>
+        <ImageButton 
+            Source="QR.png"
+            WidthRequest="50"
+            HeightRequest="100"
+            BackgroundColor="Transparent"
+                Command="{Binding GoToShareQRCommand}"
+                Grid.Column="4"
+            Grid.RowSpan="2"
+                Grid.Row="1"/>
     </Grid>
 </ContentPage>
