@@ -4,6 +4,8 @@ using Android.App;
 using Android.Content.PM;
 using Android.Runtime;
 using Android.OS;
+using AndroidX.Core.Content;
+using Android.Graphics;
 
 namespace TourDeOpole.Droid
 {
@@ -17,6 +19,11 @@ namespace TourDeOpole.Droid
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App());
+
+            ////Color t = new Color(Color.ParseColor("#94A5C1"));
+            var t = Resources.GetColor(Resource.Color.Primary);
+            Window.SetStatusBarColor(t);
+            
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
