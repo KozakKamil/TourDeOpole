@@ -92,14 +92,10 @@ namespace TourDeOpole.ViewModels
                     MyLocCity = "Brak";
                     return;
                 }
-                
 
-                if (MyLocAdress != null && MyLocCity != null)
-                {
-
-                    MyLocAdress = $"{placemark.Thoroughfare}  {placemark.SubThoroughfare}"; ;
-                    MyLocCity = $"{placemark.Locality}";
-                }
+                MyLocAdress = $"{placemark.Thoroughfare}  {placemark.SubThoroughfare}"; ;
+                MyLocCity = $"{placemark.Locality}";
+ 
                 OnPropertyChanged(nameof(MyLocAdress));
                 OnPropertyChanged(nameof(MyLocCity));
 
