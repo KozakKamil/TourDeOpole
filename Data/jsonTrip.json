@@ -1,7 +1,7 @@
 [
   {
     "TripID": 1,
-    "Image": "image_top_background.png",
+    "Image": "TopImage.png",
     "Name": "Trip1",
     "Description": "Placeholder",
     "Time": "1h30min",
@@ -9,7 +9,7 @@
   },
   {
     "TripID": 2,
-    "Image": "image_top_background.png",
+    "Image": "TopImage.png",
     "Name": "Trip2",
     "Description": "Placeholder",
     "Time": "1h30min",
@@ -17,7 +17,7 @@
   },
   {
     "TripID": 3,
-    "Image": "image_top_background.png",
+    "Image": "TopImage.png",
     "Name": "Trip3",
     "Description": "Placeholder",
     "Time": "1h30min",
@@ -25,7 +25,7 @@
   },
   {
     "TripID": 4,
-    "Image": "image_top_background.png",
+    "Image": "TopImage.png",
     "Name": "Trip4",
     "Description": "Placeholder",
     "Time": "1h30min",
