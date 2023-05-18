@@ -69,6 +69,7 @@ namespace TourDeOpole.ViewModels
 
             foreach (var place in places)
             {
+                if (!place.Image.StartsWith("http"))
                 place.Image = URLService.SetURL(place.Image);
                 FilteredPlaces.Add(place);
                 if (databaseEmpty)
