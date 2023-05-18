@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -61,6 +63,20 @@ namespace TourDeOpole.ViewModels
             }
             databaseEmpty = false;
             Trip.ListOfTrips = ListOfTrips;
+        }
+        public void OnSearchTextChanged(TextChangedEventArgs e, string searchParameter)
+        {
+            PropertyInfo propertyInfo = typeof(Trip).GetProperty(searchParameter);
+            if (string.IsNullOrWhiteSpace(e.NewTextValue))
+            {
+                ListOfTrips = new ObservableCollection<Trip>(Trip.ListOfTrips);
+                OnPropertyChanged(nameof(ListOfTrips));
+            }
+            else
+            {
+                ListOfTrips = new ObservableCollection<Trip>(Trip.ListOfTrips.Where(x => propertyInfo.GetValue(x, null).ToString().ToUpper().Contains(e.NewTextValue.ToUpper())));
+                OnPropertyChanged(nameof(ListOfTrips));
+            }
         }
     }
 }
