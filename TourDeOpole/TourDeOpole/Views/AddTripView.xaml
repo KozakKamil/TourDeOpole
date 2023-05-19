@@ -36,18 +36,24 @@
                          Margin="-590,-90,0,0"/>
             <ImageButton Grid.Row="2" 
                          Grid.Column="2" 
-                         Source="icon_plus.png" 
+                         Source="icon_plus.png"
+                         BackgroundColor="Transparent"
+                         WidthRequest="25"
+                         HeightRequest="25"
                          HorizontalOptions="Center" 
                          VerticalOptions="Center"
-                         Margin="-70,-90,0,0"
+                         Margin="-50,-100,0,0"
                          Clicked="OnButtonClickedAdd"/>
             
             <ImageButton Grid.Row="2" 
                          Grid.Column="2" 
                          Source="icon_minus.png" 
+                         BackgroundColor="Transparent"
+                         WidthRequest="25"
+                         HeightRequest="25"
                          HorizontalOptions="Center" 
                          VerticalOptions="Center"
-                         Margin="-120,-90,0,0"
+                         Margin="-140,-100,0,0"
                          Clicked="OnButtonClickedRemove"/>
             <ImageButton Grid.Row="1" 
                          Grid.Column="1" 
