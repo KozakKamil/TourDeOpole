@@ -33,5 +33,11 @@ namespace TourDeOpole.Views
             string searchParameter = "Name";
             viewModel.OnSearchTextChanged(e, searchParameter);
         }
+
+        private void CategorySelected(object sender, EventArgs args)
+        {
+            string filterParameter = (sender as Button).Text;
+            viewModel.OnCategoryButtonPressed(filterParameter);
+        }
     }
 }

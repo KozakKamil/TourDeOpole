@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reflection;
@@ -25,6 +26,7 @@ namespace TourDeOpole.ViewModels
 
         public ObservableCollection<Place> FilteredPlaces { get; set; } = new ObservableCollection<Place>();
         public ObservableCollection<Category> Category { get; set; } = new ObservableCollection<Category>();
+        public ObservableCollection<HasCategory> HasCategory { get; set; } = new ObservableCollection<HasCategory>();
 
         public PlaceViewModel()
         {
@@ -41,15 +43,16 @@ namespace TourDeOpole.ViewModels
             {
                 await NavigationService.GoToScanQR();
             });
-            ToggleFavoriteCommand = new Command<Place>(async(place) =>
+            ToggleFavoriteCommand = new Command<Place>(async (place) =>
             {
-                place.IsFavourite= !place.IsFavourite;
+                place.IsFavourite = !place.IsFavourite;
                 await App.Database.EditPlaceAsync(place);
                 LoadPlace();
             });
 
             LoadCategory();
             LoadPlace();
+            LoadHasCategory();
         }
 
         /// <summary>
@@ -100,7 +103,22 @@ namespace TourDeOpole.ViewModels
             }
             databaseEmpty = false;
         }
-        
+
+        private async void LoadHasCategory()
+        {
+            var hasCategory = App.Database.GetHasCategoryAsync().Result;
+            if (hasCategory == null || hasCategory.Count == 0)
+            {
+                hasCategory = await URLService.GetHasCategory();
+                foreach (var hs in hasCategory)
+                    await App.Database.SaveHasCategoryAsync(hs);
+            }
+            foreach (var hs in hasCategory)
+            {
+                HasCategory.Add(hs);
+            }
+        }
+
         /// <summary>
         /// This function loads the list of categories from the database or URL and sets it as the current list of categories.
         /// </summary>
@@ -118,6 +136,21 @@ namespace TourDeOpole.ViewModels
             else
             {
                 FilteredPlaces = new ObservableCollection<Place>(Place.ListOfPlaces.Where(x => propertyInfo.GetValue(x, null).ToString().ToUpper().Contains(e.NewTextValue.ToUpper())));
+                OnPropertyChanged(nameof(FilteredPlaces));
+            }
+        }
+
+        public void OnCategoryButtonPressed(string filterParameter)
+        {
+            if (filterParameter == "Wszystkie")
+            {
+                FilteredPlaces = new ObservableCollection<Place>(Place.ListOfPlaces);
+                OnPropertyChanged(nameof(FilteredPlaces));
+            }
+            else
+            {
+                int categoryId = Category.Where(c => c.Name == filterParameter).FirstOrDefault().CategoryID;
+                FilteredPlaces = new ObservableCollection<Place>(Place.ListOfPlaces.Where(p => HasCategory.Any(hc => hc.PlaceID == p.PlaceID && hc.CategoryID == categoryId)));
                 OnPropertyChanged(nameof(FilteredPlaces));
             }
         }
