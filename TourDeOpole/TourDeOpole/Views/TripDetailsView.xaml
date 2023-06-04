@@ -10,25 +10,37 @@
 
 
         <Grid RowDefinitions="50,*,*,50" 
+              ColumnDefinitions="10,*,50,10"
               BackgroundColor="{DynamicResource Background}">
             <Label Text="{Binding Time, Mode=TwoWay}" 
                    FontSize="Small"
                    Grid.Row="0"
+                   Grid.Column="1"
+                   Grid.ColumnSpan="2"
                    HorizontalOptions="Center"
                    VerticalOptions="Center"/>
             <Image Source="Map.png"
                    Aspect="AspectFill"
+                   Grid.Column="1"
+                   Grid.ColumnSpan="2"
                    Grid.Row="1"
                    Margin="10,0,10,0"/>
-            <ScrollView Grid.Row="2">
+            <ScrollView Grid.Row="2" 
+                   Grid.Column="1"
+                   Grid.ColumnSpan="2">
                 <Label Text="{Binding Description, Mode=TwoWay}"
                        FontSize="Medium"
                        Margin="20"/>
             </ScrollView>
-            <Button Text="ShareQR" 
-                    Command="{Binding GoToShareQRCommand}" 
-                    BackgroundColor="{DynamicResource Primary}"
-                    Grid.Row="3"/>
+            
+            <ImageButton 
+            Source="QR.png"
+            WidthRequest="50"
+            HeightRequest="100"
+            BackgroundColor="Transparent"
+                Command="{Binding GoToShareQRCommand}"
+                Grid.Column="2"
+                Grid.Row="0"/>
         </Grid>
 
     </ContentPage.Content>
