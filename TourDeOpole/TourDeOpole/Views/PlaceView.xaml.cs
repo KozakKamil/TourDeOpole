@@ -24,7 +24,6 @@ namespace TourDeOpole.Views
             Appearing += (sender, e) =>
             {
                 viewModel.GetLocation();
-                viewModel.LoadPlace();
             };
         }
 
