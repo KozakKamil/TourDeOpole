@@ -9,24 +9,16 @@
         <Grid RowDefinitions="3*,2*,*" ColumnDefinitions="30,*,30">
             <Image Source="settings.png" Grid.Column="1"/>
             <Grid Grid.Row="1" Grid.Column="1" ColumnDefinitions="4*,*" RowDefinitions="*,*,*,*,*">
-                <Label Text="POWIADOMIENIA" Grid.Column="0" Grid.Row="0" VerticalOptions="Center"/>
+                <Label Text="APARAT" Grid.Column="0" Grid.Row="0" VerticalOptions="Center"/>
                 <Label Text="LOKALIZACJA" Grid.Column="0" Grid.Row="1" VerticalOptions="Center"/>
                 <Label Text="POLITYKA PRYWATNOŚCI" Grid.Column="0" Grid.Row="2" VerticalOptions="Center"/>
                 <Label Text="O NAS" Grid.Column="0" Grid.Row="3" VerticalOptions="Center"/>
                 <Label Text="OCEŃ NAS" Grid.Column="0" Grid.Row="4" VerticalOptions="Center"/>
-                <Switch OnColor="#F2F2F2" ThumbColor="Blue" Grid.Column="1" Grid.Row="0" VerticalOptions="Center"/>
-                <Switch OnColor="#F2F2F2" ThumbColor="Blue" Grid.Column="1" Grid.Row="1" VerticalOptions="Center"/>
-                <ImageButton Source="Right.png" BackgroundColor="White" HorizontalOptions="End" Margin="0,0,15,0" Grid.Column="1" Grid.Row="2" VerticalOptions="Center"/>
-                <ImageButton Source="Right.png" BackgroundColor="White"  HorizontalOptions="End" Margin="0,0,15,0" Grid.Column="1" Grid.Row="3" VerticalOptions="Center"/>
-                <ImageButton Source="Right.png" BackgroundColor="White"  HorizontalOptions="End" Margin="0,0,15,0" Grid.Column="1" Grid.Row="4" VerticalOptions="Center"/>
-                
-                <!--TEMP-->
-                <ImageButton Source="https://raw.githubusercontent.com/KozakKamil/TourDeOpole/master/TourDeOpole/TourDeOpole.Android/Resources/drawable/FavoriteCheck.png" BackgroundColor="White"  HorizontalOptions="End" Margin="0,0,15,0" Grid.Column="1" Grid.Row="5" VerticalOptions="Center"/>
-                <ImageButton Source="{Binding tempVar}" BackgroundColor="White"  HorizontalOptions="End" Margin="0,0,15,0" Grid.Column="1" Grid.Row="6" VerticalOptions="Center"/>
-                <ImageButton Source="{Binding tempVar2}" BackgroundColor="White"  HorizontalOptions="End" Margin="0,0,15,0" Grid.Column="1" Grid.Row="7" VerticalOptions="Center"/>
-                <ImageButton Source="{Binding tempVar3}" BackgroundColor="White"  HorizontalOptions="End" Margin="0,0,15,0" Grid.Column="1" Grid.Row="8" VerticalOptions="Center"/>
-                <!--TEMP-->
-                
+                <Switch x:Name="CameraSwitch" OnColor="#F2F2F2" ThumbColor="Blue" Grid.Column="1" Grid.Row="0" VerticalOptions="Center" Toggled="ToggleCameraSwitch_Clicked"/>
+                <Switch x:Name="LocalisationSwitch" OnColor="#F2F2F2" ThumbColor="Blue" Grid.Column="1" Grid.Row="1" VerticalOptions="Center" Toggled="ToggleLocationSwitch_Clicked"/>
+                <ImageButton Source="Right.png" BackgroundColor="White" HorizontalOptions="End" Margin="0,0,15,0" Grid.Column="1" Grid.Row="2" VerticalOptions="Center" Clicked="PrivacyPolicyButton_Clicked"/>
+                <ImageButton Source="Right.png" BackgroundColor="White" HorizontalOptions="End" Margin="0,0,15,0" Grid.Column="1" Grid.Row="3" VerticalOptions="Center" Clicked="AboutButton_Clicked"/>
+                <ImageButton Source="Right.png" BackgroundColor="White" HorizontalOptions="End" Margin="0,0,15,0" Grid.Column="1" Grid.Row="4" VerticalOptions="Center" Clicked="RateUsButton_Clicked"/>
             </Grid>
         </Grid>
     </ContentPage.Content>

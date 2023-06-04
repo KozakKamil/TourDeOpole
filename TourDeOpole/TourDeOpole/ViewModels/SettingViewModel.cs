@@ -3,27 +3,82 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using TourDeOpole.Services;
+using TourDeOpole.Views;
+using Xamarin.Essentials;
 using Xamarin.Forms;
+using static Xamarin.Essentials.Permissions;
 
 namespace TourDeOpole.ViewModels
 {
     public class SettingViewModel : BaseViewModel
     {
-        //TEMP
-        public string tempVar { get; set; } 
-        public String tempVar2 { get; set; } 
-        public ImageSource tempVar3 { get; set; } 
-        //TEMP
-
         public SettingViewModel()
         {
 
-            //TEMP
-            tempVar = "https://raw.githubusercontent.com/KozakKamil/TourDeOpole/master/TourDeOpole/TourDeOpole.Android/Resources/drawable/FavoriteCheck.png";
-            tempVar2 = "https://raw.githubusercontent.com/KozakKamil/TourDeOpole/master/TourDeOpole/TourDeOpole.Android/Resources/drawable/FavoriteCheck.png";
-            tempVar3 = "https://raw.githubusercontent.com/KozakKamil/TourDeOpole/master/TourDeOpole/TourDeOpole.Android/Resources/drawable/FavoriteCheck.png";
-            //TEMP
+        }
 
+        public async void ToggleLocationSettingAsync(object sender, EventArgs e)
+        {
+            bool request = false;
+            if ((sender as Switch).IsToggled)
+                request = true;
+
+            if (request)
+            {
+                await RequestAsync<LocationWhenInUse>();
+            }else
+            {
+                    AppInfo.ShowSettingsUI();
+            }
+
+        }
+        public async void ToggleCameraSwitchSettingAsync(object sender, EventArgs e)
+        {
+            bool request = false;
+            if ((sender as Switch).IsToggled)
+                request = true;
+            if (request)
+            {
+                await RequestAsync<Camera>();
+            }
+            else
+            {
+                    AppInfo.ShowSettingsUI();
+            }
+
+        }
+
+        internal void About()
+        {
+            try
+            {
+                var websiteUrl = "https://github.com/KozakKamil/TourDeOpole/blob/master/README.md";
+                Launcher.OpenAsync(new Uri(websiteUrl));
+            }
+            catch (Exception ex)
+            {
+                // Handle any exceptions that may occur
+                Console.WriteLine($"Error: {ex.Message}");
+            }
+        }
+
+        internal void PrivacyPolicy()
+        {
+            throw new NotImplementedException();
+        }
+
+        internal void RateUs()
+        {
+            try
+            {
+                var websiteUrl = "https://github.com/KozakKamil/TourDeOpole";
+                Launcher.OpenAsync(new Uri(websiteUrl));
+            }
+            catch (Exception ex)
+            {
+                // Handle any exceptions that may occur
+                Console.WriteLine($"Error: {ex.Message}");
+            }
         }
 
     }
