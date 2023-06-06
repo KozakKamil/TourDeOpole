@@ -14,10 +14,14 @@ namespace TourDeOpole.Repository
         public Database(string dbPath)
         {
             _connection = new SQLiteAsyncConnection(dbPath);
+
             //Odkomentuj jeśli chcesz wyczyścić bazę danych
-            //_connection.DropTableAsync<Place>().Wait();
-            //_connection.DropTableAsync<Category>().Wait();
-            //_connection.DropTableAsync<Trip>().Wait();
+
+            /*_connection.DropTableAsync<Place>().Wait();
+            _connection.DropTableAsync<Category>().Wait();
+            _connection.DropTableAsync<Trip>().Wait();
+            _connection.DropTableAsync<HasCategory>().Wait();*/
+
             _connection.CreateTablesAsync<Place,Category,HasCategory,Trip,PartOfTrip>().Wait();
         }
 

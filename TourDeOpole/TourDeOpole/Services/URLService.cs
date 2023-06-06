@@ -35,6 +35,22 @@ namespace TourDeOpole.Services
             var json = await GetJson(categoryUrl);
             return JsonConvert.DeserializeObject<List<Category>>(json);
         }
+        public static async Task<List<HasCategory>> GetHasCategory()
+        {
+            //throw new NotImplementedException();
+
+            await App.Database.SaveHasCategoryAsync(new HasCategory { PlaceID = 1, CategoryID = 1 });
+            await App.Database.SaveHasCategoryAsync(new HasCategory { PlaceID = 1, CategoryID = 2 });
+            await App.Database.SaveHasCategoryAsync(new HasCategory { PlaceID = 1, CategoryID = 3 });
+            await App.Database.SaveHasCategoryAsync(new HasCategory { PlaceID = 2, CategoryID = 3 });
+            await App.Database.SaveHasCategoryAsync(new HasCategory { PlaceID = 2, CategoryID = 4 });
+            await App.Database.SaveHasCategoryAsync(new HasCategory { PlaceID = 2, CategoryID = 5 });
+            await App.Database.SaveHasCategoryAsync(new HasCategory { PlaceID = 3, CategoryID = 6 });
+            await App.Database.SaveHasCategoryAsync(new HasCategory { PlaceID = 3, CategoryID = 7 });
+            await App.Database.SaveHasCategoryAsync(new HasCategory { PlaceID = 3, CategoryID = 3 });
+
+            return await App.Database.GetHasCategoryAsync();
+        }
         /// <summary>
         /// This code is a method that uses an HTTP client to send a request to a specified URL and return the JSON string response.
         /// </summary>
