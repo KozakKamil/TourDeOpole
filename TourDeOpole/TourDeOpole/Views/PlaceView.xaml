@@ -16,10 +16,13 @@
                 <Label Text="{Binding MyLocCity}" HorizontalOptions="Start" Margin="0,5,0,0" Grid.Row="1" Grid.Column="1"/>
                 <Label Text="{Binding MyLocAdress}" HorizontalOptions="Start" Margin="0,-5,0,0" Grid.Row="1" Grid.Column="1"/>
             </StackLayout>
+            
         </Grid>
-        
-        <Button Grid.Row="1" Grid.Column="1" Margin="10" HorizontalOptions="End"  WidthRequest="50" Text="Scan" FontSize="10" Command="{Binding GoToScanQRCommand }"/>
-
+        <StackLayout Orientation="Horizontal" Grid.Column="1" Grid.Row="1" HorizontalOptions="End">
+            <Button VerticalOptions="End" FontSize="10" Margin="10" WidthRequest="100" Text="Find Closest" Command="{Binding CheckClosest}"/>
+            <Button Margin="10" WidthRequest="50" Text="Scan" FontSize="10" Command="{Binding GoToScanQRCommand }"/>
+        </StackLayout>
+       
         <Grid Grid.Column="1" Grid.Row="2">
             <Frame  Margin="10,0,10,0" Padding="0" CornerRadius="10">
                 <Entry Placeholder="" BackgroundColor="White" Margin="30,0,0,0" TextChanged="LocationSearchBarTextChanged"/>
@@ -73,8 +76,6 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-        <ImageButton Grid.Row="0" Grid.Column="1" Source="Pin.png" HorizontalOptions="End" VerticalOptions="End" Margin="0,0,80,10" Command="{Binding ReloadPlaces}" BackgroundColor="Transparent"/>
-        <ImageButton Grid.Row="0" Grid.Column="1" Source="Pin.png" HorizontalOptions="End" VerticalOptions="End" Margin="0,0,20,10" Command="{Binding CheckClosest}" BackgroundColor="Transparent"/>
         <ImageButton Grid.Row="4" Grid.Column="1" Source="AddButton.png" HorizontalOptions="End" VerticalOptions="End" Margin="0,0,20,10" Command="{Binding GoToAddCommand}" BackgroundColor="Transparent"/>
     </Grid>
 </ContentPage>
