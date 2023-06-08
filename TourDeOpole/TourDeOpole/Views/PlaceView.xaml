@@ -8,9 +8,13 @@
              Shell.NavBarIsVisible="False"
              Title="PlaceView">
     
-    <Grid RowDefinitions="120,50,50,40,auto" ColumnDefinitions="5,*,5" BackgroundColor="{DynamicResource Background}">
+    <Grid RowDefinitions="120,60,50,40,auto" ColumnDefinitions="5,*,5" BackgroundColor="{DynamicResource Background}">
         <Image Source="TopImage.png" Aspect="AspectFill" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0" />
-        <Grid Grid.Row="1" Grid.Column="1"  ColumnDefinitions="50,1*">
+        <Button Margin="10" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0"  WidthRequest="50" 
+                HorizontalOptions="End" VerticalOptions="Start"
+                Text="Scan" FontSize="10" Command="{Binding GoToScanQRCommand }" BackgroundColor="{StaticResource Primary}"
+                CornerRadius="50"/>
+        <Grid Grid.Row="1" Grid.Column="1"  ColumnDefinitions="50,1*" >
             <Image Source="Pin.png" HorizontalOptions="Start" Margin="10,0,0,0"/>
             <StackLayout Grid.Column="1">
                 <Label Text="{Binding MyLocCity}" HorizontalOptions="Start" Margin="0,5,0,0" Grid.Row="1" Grid.Column="1"/>
@@ -19,8 +23,8 @@
             
         </Grid>
         <StackLayout Orientation="Horizontal" Grid.Column="1" Grid.Row="1" HorizontalOptions="End">
-            <Button VerticalOptions="End" FontSize="10" Margin="10" WidthRequest="100" Text="Find Closest" Command="{Binding CheckClosest}"/>
-            <Button Margin="10" WidthRequest="50" Text="Scan" FontSize="10" Command="{Binding GoToScanQRCommand }"/>
+            <Button VerticalOptions="End" FontSize="10" Margin="10" HeightRequest="50" Text="Najbliżej mnie !" 
+                    Command="{Binding CheckClosest}" BackgroundColor="{StaticResource Primary}" CornerRadius="10"/>
         </StackLayout>
        
         <Grid Grid.Column="1" Grid.Row="2">
