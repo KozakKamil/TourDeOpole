@@ -1,32 +1,24 @@
 [
   {
     "TripID": 1,
-    "Image": "TopImage.png",
-    "Name": "Trip1",
+    "Image": "Basenowe.jpg",
+    "Name": "Basenowa Wycieczka",
     "Description": "Placeholder",
     "Time": "1h30min",
     "IsCustom": false
   },
   {
     "TripID": 2,
-    "Image": "TopImage.png",
-    "Name": "Trip2",
+    "Image": "Kościołowe.jpg",
+    "Name": "Kościołowa Wycieczka",
     "Description": "Placeholder",
     "Time": "1h30min",
     "IsCustom": false
   },
   {
-    "TripID": 3,
-    "Image": "TopImage.png",
-    "Name": "Trip3",
-    "Description": "Placeholder",
-    "Time": "1h30min",
-    "IsCustom": false
-  },
-  {
-    "TripID": 4,
-    "Image": "TopImage.png",
-    "Name": "Trip4",
+    "TripID": 2,
+    "Image": "Pomnikowe.jpg",
+    "Name": "Pomnikowa Wycieczka",
     "Description": "Placeholder",
     "Time": "1h30min",
     "IsCustom": false
