@@ -57,6 +57,8 @@ namespace TourDeOpole.ViewModels
 
             foreach (var trip in trips)
             {
+                if (!trip.Image.StartsWith("http"))
+                    trip.Image = URLService.SetURL(trip.Image);
                 ListOfTrips.Add(trip);
                 if (databaseEmpty)
                     await App.Database.SaveTripAsync(trip);
