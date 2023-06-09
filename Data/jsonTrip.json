@@ -1,7 +1,7 @@
 [
   {
     "TripID": 1,
-    "Image": "Basenowe.jpg",
+    "Image": "Basenowe.jpeg",
     "Name": "Basenowa Wycieczka",
     "Description": "Placeholder",
     "Time": "1h30min",
@@ -9,7 +9,7 @@
   },
   {
     "TripID": 2,
-    "Image": "Kościołowe.jpg",
+    "Image": "Kościołowe.jpeg",
     "Name": "Kościołowa Wycieczka",
     "Description": "Placeholder",
     "Time": "1h30min",
@@ -17,7 +17,7 @@
   },
   {
     "TripID": 2,
-    "Image": "Pomnikowe.jpg",
+    "Image": "Pomnikowe.jpeg",
     "Name": "Pomnikowa Wycieczka",
     "Description": "Placeholder",
     "Time": "1h30min",
