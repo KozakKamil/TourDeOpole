@@ -81,7 +81,14 @@ namespace TourDeOpole.ViewModels
        
             try
             {
-               
+                var status = await Permissions.CheckStatusAsync<Permissions.LocationWhenInUse>();
+                if (status != PermissionStatus.Granted)
+                {
+                    MyLocAdress = "Lokalizacji";
+                    MyLocCity = "Brak";
+                    return;
+                }
+
                 await LocationService.GetLocation();
 
                 var placemark = LocationService.Placemark;
@@ -113,9 +120,14 @@ namespace TourDeOpole.ViewModels
             }
         }
 
-        public double CalculateDistanceBetweenLocation(Location location, Location myLocation)
+        public double CalculateDistanceBetweenLocation(Place place, Placemark placemark)
         {
-            return Location.CalculateDistance(location, myLocation, DistanceUnits.Kilometers);
+            return Location.CalculateDistance(
+                            place.Latitude,
+                            place.Longitude,
+                            placemark.Location.Latitude,
+                            placemark.Location.Longitude,
+                            DistanceUnits.Kilometers);
         }
 
         #endregion 

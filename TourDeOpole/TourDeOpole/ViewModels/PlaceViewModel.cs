@@ -5,6 +5,7 @@ using System.Linq;
 using System.Numerics;
 using System.Reflection;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using TourDeOpole.Models;
 using TourDeOpole.Repository;
@@ -27,6 +28,7 @@ namespace TourDeOpole.ViewModels
         public ICommand CheckClosest { get; set; }
         public ICommand ReloadPlaces { get; set; }
 
+        public bool IsLocationAvaible { get; set; }
         public ObservableCollection<Place> FilteredPlaces { get; set; } = new ObservableCollection<Place>();
         public ObservableCollection<Category> Category { get; set; } = new ObservableCollection<Category>();
         public ObservableCollection<HasCategory> HasCategory { get; set; } = new ObservableCollection<HasCategory>();
@@ -54,7 +56,7 @@ namespace TourDeOpole.ViewModels
             });
             CheckClosest = new Command<Place>(async (place) =>
             {
-                CalcClose();
+                await CalcClose();
             });
             ReloadPlaces = new Command<Place>(async (place) =>
             {
@@ -68,49 +70,43 @@ namespace TourDeOpole.ViewModels
         /// <summary>
         /// Loads the list of places from the database or URL and sets it as the current list of places.
         /// </summary>
-        public async void CalcClose()
+        public async Task CalcClose()
         {
             FilteredPlaces.Clear();
             try
             {
-                await LocationService.GetLocation();
                 var placemark = LocationService.Placemark;
 
                 if (placemark == null)
                 {
+                    await App.Current.MainPage.DisplayAlert("Wystąpił błąd", "Nie udało się pobrać lokalizacji", "Dobrze");
                     return;
                 }
                 else
                 {
-                    Double max = double.PositiveInfinity;
-                    Place closest=null;
+                    var max = double.PositiveInfinity;
+                    Place closest = new Place();
                     var places = App.Database.GetPlaceAsync().Result;
                     foreach (var place in places)
                     {
-                        if (Location.CalculateDistance(
-                            place.Latitude,
-                            place.Longitude,
-                            placemark.Location.Latitude,
-                            placemark.Location.Longitude,
-                            DistanceUnits.Kilometers) < max)
+                        var distance = CalculateDistanceBetweenLocation(place, placemark);
+                        if (distance < max)
                         {
-                            max = Location.CalculateDistance(
-                            place.Latitude,
-                            place.Longitude,
-                            placemark.Location.Latitude,
-                            placemark.Location.Longitude,
-                            DistanceUnits.Kilometers);
+                            max = distance;
                             closest = place;
                         }
                     }
-                    FilteredPlaces.Add(closest);
-                    Place.ListOfPlaces = FilteredPlaces;
+                    if (closest != null)
+                    {
+                        FilteredPlaces.Add(closest);
+                    }
+                    OnPropertyChanged(nameof(FilteredPlaces));
                 }
 
             }
             catch (Exception ex)
             {
-
+                await App.Current.MainPage.DisplayAlert("Błąd", "Wystąpił błąd podczas szukania lokalizacji", "Dobrze");
             }
         }
         public async void LoadPlace()
@@ -129,10 +125,10 @@ namespace TourDeOpole.ViewModels
                     place.Image = URLService.SetURL(place.Image);
                 FilteredPlaces.Add(place);
                 if (databaseEmpty)
-                    await App.Database.SavePlaceAsync(place);          
+                    await App.Database.SavePlaceAsync(place);
             }
             Place.ListOfPlaces = FilteredPlaces;
-            
+
             databaseEmpty = false;
         }
         /// <summary>
@@ -181,6 +177,7 @@ namespace TourDeOpole.ViewModels
         public void OnSearchTextChanged(TextChangedEventArgs e, string searchParameter)
         {
             PropertyInfo propertyInfo = typeof(Place).GetProperty(searchParameter);
+            Place.ListOfPlaces = new ObservableCollection<Place>(App.Database.GetPlaceAsync().Result);
             if (string.IsNullOrWhiteSpace(e.NewTextValue))
             {
                 FilteredPlaces = new ObservableCollection<Place>(Place.ListOfPlaces);
@@ -195,9 +192,10 @@ namespace TourDeOpole.ViewModels
 
         public void OnCategoryButtonPressed(string filterParameter)
         {
+            Place.ListOfPlaces = new ObservableCollection<Place>(App.Database.GetPlaceAsync().Result);
             if (filterParameter == "Wszystkie")
             {
-                FilteredPlaces = new ObservableCollection<Place>(Place.ListOfPlaces);
+                FilteredPlaces = new ObservableCollection<Place>(App.Database.GetPlaceAsync().Result);
                 OnPropertyChanged(nameof(FilteredPlaces));
             }
             else
